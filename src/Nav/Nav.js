@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import {Nav, Navbar} from 'react-bootstrap/Nav'
 import {Button, Form, FormControl, Nav, Navbar, Image} from 'react-bootstrap';
-import { Logo } from './Imagenes/logo.jpeg';
+import { Logo } from '../Imagen/logo.jpeg';
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,11 +11,11 @@ import {
   useParams
 } from "react-router-dom";
 import './Nav.css';
-import Shop from './Shop.js';
-import About from './About.js';
-import Contact from './Contact.js';
-import Home from './Home.js';
-import Portfolio from './Portfolio.js';
+import Shop from '../Shop/Shop.js';
+import About from '../About/About.js';
+import Contact from '../Contact/Contact.js';
+import Home from '../Home/Home.js';
+import Portfolio from '../Portfolio/Portfolio.js';
 
 export default class Navigator extends Component {
 

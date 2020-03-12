@@ -3,10 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import $ from "jquery";
-import { logoo } from './Imagenes/logo.jpeg';
-import Footer from './Footer.js';
-import Home from './Home.js';
-import Navigator from './Nav.js';
+import { logoo } from './Imagen/logo.jpeg';
+import Footer from './Footer/Footer.js';
+import Home from './Home/Home.js';
+import Navigator from './Nav/Nav.js';
 
 
 function App() {

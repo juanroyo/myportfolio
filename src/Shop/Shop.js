@@ -3,15 +3,14 @@ import {Image} from 'react-bootstrap';
 import './Shop.css'
 
 export default class Shop extends Component {
+Constructor() {
 
-/*ready() {
-  var removeCartItemButtons = document.getElementsByClassName('btn-danger')
-  console.log(removeCartItemButtons)
-  for (var i = 0; i < removeCartItemButtons.length; i++) {
-      var button = removeCartItemButtons[i]
-      button.addEventListener('click', removeCartItem)
-  }
-}*/
+this.state = {
+
+}
+}
+
+
 render(){
   return(
     <div>
@@ -26,7 +25,7 @@ render(){
                       <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
                   </div>
               </div>
-              <div class="shop-item"> //aqui  22:49
+              <div class="shop-item">
                   <h3 class="shop-item-title">Album 2</h3>
                   <Image class="shop-item-image" src="Images/Album 2.png" />
                   <div class="shop-item-details">
