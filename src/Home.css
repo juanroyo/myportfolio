@@ -1,0 +1,14 @@
+h2 {
+
+}
+.title {
+margin-top:1000px;
+ ;
+
+}
+.justify {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 200px;
+}

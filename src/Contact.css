@@ -1,0 +1,29 @@
+.justifier {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+}
+.stylecontact {
+  /*display: flex;
+  justify-content: center;
+  position: absolute;*/
+  z-index: 5;
+  margin-top: 25px;
+  margin-bottom: 25px;
+    width: 50%;
+    position: fixed;
+}
+h1 {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 56px;
+  color: #7a7a7a;
+  width: 300px;
+}
+.boxstyle {
+  background-color: #ebebeb;
+   border-radius: 5px;
+   padding: 20px;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
