@@ -7,10 +7,10 @@ import {Cart} from './Cart.js'
 
 export const Itemslist = () => {
     const database = [
-      {name: 'Album 1', price: '10', id:'1'},
-      {name: 'Album 2', price: '10', id:'2'},
-      {name: 'Album 3', price: '10', id:'3'},
-      {name: 'Album 4', price: '10', id:'4'}
+      {name: 'Album 1', price: 10, id:1},
+      {name: 'Album 2', price: 10, id:2},
+      {name: 'Album 3', price: 10, id:3},
+      {name: 'Album 4', price: 10, id:4}
     ]
 
   return (

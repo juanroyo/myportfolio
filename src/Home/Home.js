@@ -8,8 +8,7 @@ export default class Home extends Component {
     return(
       <div class="justify">
       <div class="title">
-      <h2>ZylenStudio is a Music & Sound Design studio working in Music for Media,
-         Apps, Videogames and Lineal Postproduction</h2>
+      <h1>Music & Sound Design made by Zylen Studio</h1>
        </div>
        </div>
     );
