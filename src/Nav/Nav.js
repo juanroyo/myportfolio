@@ -16,7 +16,7 @@ import About from '../About/About.js';
 import Contact from '../Contact/Contact.js';
 import Home from '../Home/Home.js';
 import Portfolio from '../Portfolio/Portfolio.js';
-import {Itemslist} from '../Shop/Itemslist.js'
+import {Itemslist} from '../Shop/Itemslist.js';
 
 export default class Navigator extends Component {
 

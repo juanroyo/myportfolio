@@ -259,6 +259,9 @@ html, body {
 
 .cart-item {
     width: 45%;
+    display: flex;
+    /*flex-direction: column;*/
+
 }
 
 .cart-price {
@@ -338,4 +341,25 @@ html, body {
     display: block;
     margin: 40px auto 80px auto;
     font-size: 1.75em;
+}
+.list1 {
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+
+}
+.list2 {
+display: flex;
+flex-direction: column;
+
+
+}
+.list3 {
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+
+}
+ul {
+
 }

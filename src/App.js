@@ -7,14 +7,20 @@ import { logoo } from './Imagen/logo.jpeg';
 import Footer from './Footer/Footer.js';
 import Home from './Home/Home.js';
 import Navigator from './Nav/Nav.js';
+import {Itemslist} from './Shop/Itemslist.js';
+import {CartProvider} from './Shop/CartContext.js';
+import {Cart} from './Shop/Cart.js'
+
 
 
 function App() {
   return (
     <div className="App">
+      <CartProvider>
       <Navigator/>
-
+        <Cart />
       <Footer/>
+      </CartProvider>
   </div>
   );
 }

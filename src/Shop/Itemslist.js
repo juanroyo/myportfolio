@@ -6,7 +6,7 @@ import {CartProvider} from './CartContext.js';
 import {Cart} from './Cart.js'
 
 export const Itemslist = () => {
-    const database = [
+    var database = [
       {name: 'Album 1', price: 10, id:1},
       {name: 'Album 2', price: 10, id:2},
       {name: 'Album 3', price: 10, id:3},
@@ -14,13 +14,12 @@ export const Itemslist = () => {
     ]
 
   return (
-    <CartProvider>
-    <Cart />
 
+<div>
 {database.map((item) =>(
 <Items name={item.name} price={item.price} key={item.id} />
 ))}
-        </CartProvider>
+      </div>
   );
 }
 
