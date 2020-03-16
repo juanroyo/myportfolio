@@ -1,38 +1,80 @@
-import React, {useContext} from 'react';
-import {CartContext} from './CartContext.js';
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { removeItem,addQuantity,subtractQuantity} from '/Users/juanroyo/Documents/MyPortfolio/my-app/src/actions/cartActions'
+import Recipe from '../Recipe.js'
+class Cart extends Component{
 
-export const Cart = () => {
-  const [cart, setCart] = useContext(CartContext);
-  console.log(cart);
-  const totalPrice = cart.reduce((acc, currentState) => acc + currentState.price, 0);
-  var Names = cart.map(item => (<li>{item.name}</li>));
-  var Prices = cart.map(item => (<li>{item.price}€</li>));
-  console.log(Names);
-  return (
-    <div>
-      <div class="container content-section">
-          <h2 class="section-header">CART</h2>
-          <div class="cart-row">
-              <h3 class="cart-item cart-header cart-column">ITEM</h3>
-              <h3 class="cart-price cart-header cart-column">PRICE</h3>
-              <h3 class="cart-quantity cart-header cart-column">QUANTITY</h3>
-                <p>{cart.length}</p>
-          </div>
-          <div class="cart-items">
-            <ul class="list1">{Names}{Prices}</ul>
-            <ul class="list2"></ul>
-            <ul class="list3"></ul>
-          </div>
-          <div class="cart-total">
-              <strong class="cart-total-title">Total</strong>
-              <h3 class="cart-total-price">{totalPrice}€</h3>
-          </div>
-          <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
-      </div>
-    <span>items in Cart: {cart.length}</span>
-    <br/>
-    <span>total price: {totalPrice}</span>
-    </div>
-  )
+  handleRemove = (id)=>{
+        this.props.removeItem(id);
+    }
+    //to add the quantity
+    handleAddQuantity = (id)=>{
+        this.props.addQuantity(id);
+    }
+    //to substruct from the quantity
+    handleSubtractQuantity = (id)=>{
+        this.props.subtractQuantity(id);
+    }
 
+    render(){
+
+        let addedItems = this.props.items.length ?
+            (
+                this.props.items.map(item=>{
+                    return(
+
+                        <li className="collection-item avatar" key={item.id}>
+                                    <div className="item-img">
+                                        <img src={item.img} alt={item.img} className=""/>
+                                    </div>
+
+                                    <div className="item-desc">
+                                        <span className="title">{item.title}</span>
+                                        <p>{item.desc}</p>
+                                        <p><b>Price: {item.price}$</b></p>
+                                        <p>
+                                            <b>Quantity: {item.quantity}</b>
+                                        </p>
+                                        <div className="add-remove">
+                                            <Link to="/cart"><i className="material-icons">arrow_drop_up</i></Link>
+                                            <Link to="/cart"><i className="material-icons">arrow_drop_down</i></Link>
+                                        </div>
+                                        <button className="waves-effect waves-light btn pink remove">Remove</button>
+                                    </div>
+
+                               </li>
+                    )
+                })
+            ):
+
+             (
+                <p>Nothing.</p>
+             )
+       return(
+            <div className="container">
+                <div className="cart">
+                    <h5>You have ordered:</h5>
+                    <ul className="collection">
+                        {addedItems}
+                    </ul>
+                </div>
+                <Recipe /> 
+            </div>
+       )
+    }
 }
+
+const mapStateToProps = (state)=>{
+    return{
+        items: state.addedItems
+    }
+}
+const mapDispatchToProps = (dispatch)=>{
+    return{
+        removeItem: (id)=>{dispatch(removeItem(id))},
+        addQuantity: (id)=>{dispatch(addQuantity(id))},
+        subtractQuantity: (id)=>{dispatch(subtractQuantity(id))}
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Cart)
