@@ -1,3 +1,8 @@
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser');
@@ -5,6 +10,8 @@ const path = require('path');
 const methodOverride = require("method-override");
 const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+console.log(stripeSecretKey)
 const router = express.Router();
 var url = "mongodb://localhost:27017/";
 
@@ -41,31 +48,77 @@ MongoClient.connect(url, function(err, db) {
     db.close();
   });
 });
-/*app.set('view engine', 'ejs')
-app.get('/',function(req,res) {
-  res.sendFile(path.join('/src/public', __dirname +'/index.html'));
-});
-app.use(express.static(__dirname))*/
+app.set('view engine', 'ejs')
 app.use( bodyParser.json() );
-app.use(bodyParser.urlencoded({ extended: true }))
+//app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json({ type: 'application/json' }));
 app.use(methodOverride());
+
+
+
 
 //--------HOME GET------------
 app.get('/', function(req, res) {
    res.send("Hello World!");
 });
-//--------CART GET-------------
-app.get('/cart', function(req, res) {
-   res.send("estoy en el carritooo");
+//-------------CART----------------
+app.post('/cart', function(req, res) {
+   MongoClient.connect(url, function(err, db) {
+     if (err) throw err;
+     var dbo = db.db("mydb");
+     var payment = {
+       Author: req.body.Author,
+       Img: req.body.Img,
+       Description: req.body.Description,
+       Title: req.body.Title,
+       Genre: req.body.Genre,
+       Type: req.body.Type,
+       Price: req.body.Price
+     };
+     dbo.collection("Payments").insertOne(payment, function(err, result) {
+       if (err) throw err;
+       console.log("1 document inserted");
+       res.json({result: "success"});
+       db.close()
 });
-//--------CART POST-------------
+});
+});
+
+app.get('/cart', function(req, res) {
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("mydb");
+
+    dbo.collection("Albums").find().toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result)
+      res.json(result);
+      db.close();
+    });
+  });
+});
+app.get('/cart/:_id', function(req, res) {
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("mydb");
+    var albumid = req.params._id;
+    dbo.collection("Albums").find(albumid).toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result)
+      res.json(result);
+      db.close();
+    });
+  });
+});
+
+//--------CONTACT POST-------------
 app.post('/contact', function(req, res) {
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("mydb");
     var myobj = {
-          Email: "",
-          Message: ""
+          Email: req.body.Email,
+          Message: req.body.Message
           };
     dbo.collection("Messages").insertOne(myobj, function(err, result) {
       if (err) throw err;
@@ -76,7 +129,7 @@ app.post('/contact', function(req, res) {
 });
 });
 //--------POST DE LA SHOP------
-app.post('/shop', function (req, res) {
+/*app.post('/shop', function (req, res) {
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("mydb");
@@ -85,7 +138,8 @@ MongoClient.connect(url, function(err, db) {
             Img: "https://media.giphy.com/media/4iBEbXGK03neo/giphy.gif",
             Description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
             Title: "de prueba",
-            Genre: "nooo"
+            Genre: "nooo",
+            Type: "Drum kit"
         };
   dbo.collection("Albums").insertOne(myobj, function(err, result) {
     if (err) throw err;
@@ -94,18 +148,31 @@ MongoClient.connect(url, function(err, db) {
     db.close();
   });
 });
-});
+});*/
 
-//--------GET DE LA SHOP------
+//-------------SHOP-----------------
 app.get('/shop', function(req, res) {
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("mydb");
 
-    dbo.collection("Albums").find({type: req.params.id}).toArray(function(err, result) {
+    dbo.collection("Albums").find().toArray(function(err, result) {
       if (err) throw err;
       console.log(result)
-      res.json(req.params.id);
+      res.json(result);
+      db.close();
+    });
+  });
+});
+app.get('/shop/:_id', function(req, res) {
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("mydb");
+
+    dbo.collection("Albums").find().toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result)
+      res.json(result);
       db.close();
     });
   });
