@@ -2,16 +2,18 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
-
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
+console.log(stripeSecretKey, stripePublicKey)
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser');
+const fs = require('fs');
 const path = require('path');
 const methodOverride = require("method-override");
 const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-console.log(stripeSecretKey)
+
 const router = express.Router();
 var url = "mongodb://localhost:27017/";
 
@@ -48,7 +50,7 @@ MongoClient.connect(url, function(err, db) {
     db.close();
   });
 });
-app.set('view engine', 'ejs')
+
 app.use( bodyParser.json() );
 //app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json({ type: 'application/json' }));
@@ -97,6 +99,19 @@ app.get('/cart', function(req, res) {
     });
   });
 });
+app.get('/cart', function(req, res){
+  fs.readFile('items.json', function(error){
+    if(error) {
+      res.status(500).end()
+    } else {
+   res.render('/cart', {
+     stripePublicKey: stripePublicKey,
+     items: JSON.parse(data)
+   })
+ }
+})
+})
+  
 app.get('/cart/:_id', function(req, res) {
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
