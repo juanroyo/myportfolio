@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import StripeCheckout from "react-stripe-checkout";
 //import { addShipping } from './actions/cartActions'
 class Recipe extends Component{
 
@@ -17,7 +18,25 @@ class Recipe extends Component{
     }
 
     render(){
-
+      const makePayment = token => {
+        const body = {
+          token,
+          product: this.props,
+        }
+        const headers = {
+          "Content-Type": "application/json"
+        }
+        return fetch(`http://localhost:8080/cart`, {
+          method: "POST",
+          headers,
+          body: JSON.stringify(body)
+        }).then(response => {
+          console.log("RESPONSE", response)
+          const {status} = response;
+          console.log("STATUS", status)
+        })
+        .catch(error => console.log(error))
+      }
         return(
             <div className="container">
                 <div className="collection">
@@ -30,6 +49,14 @@ class Recipe extends Component{
                         <li className="collection-item"><b>Total: {this.props.total} $</b></li>
                     </div>
                     <div className="checkout">
+                        <StripeCheckout
+                          stripeKey= "pk_test_4B9W2axLr9LK45DRsR9W2Fhv00zdGlIUBT"
+                          token={makePayment}
+                          name="buy mis cosas"
+                          amount={this.props.total * 100}
+                           >
+                           Compra {this.props.total} €
+                         </StripeCheckout>
                         <button className="waves-effect waves-light btn">Checkout</button>
                     </div>
                  </div>

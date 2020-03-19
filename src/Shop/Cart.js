@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { removeItem,addQuantity,subtractQuantity} from '/Users/juanroyo/Documents/MyPortfolio/my-app/src/actions/cartActions'
 import Recipe from '../Recipe.js'
+
 class Cart extends Component{
 
   handleRemove = (id)=>{
@@ -40,6 +41,7 @@ class Cart extends Component{
                                             <Link to="/cart"><i className="material-icons">arrow_drop_up</i></Link>
                                             <Link to="/cart"><i className="material-icons">arrow_drop_down</i></Link>
                                         </div>
+
                                         <button className="waves-effect waves-light btn pink remove">Remove</button>
                                     </div>
 
@@ -59,7 +61,7 @@ class Cart extends Component{
                         {addedItems}
                     </ul>
                 </div>
-                <Recipe /> 
+                <Recipe  />
             </div>
        )
     }

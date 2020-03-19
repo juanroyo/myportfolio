@@ -10,9 +10,12 @@ const app = express()
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
-const methodOverride = require("method-override");
+const stripe = require("stripe")("sk_test_qi9RJCWRFOU6Ry4X8m1kvNad002D09YcIO")
+const { v4: uuidv4 } = require('uuid');
+const cors = require("cors")
+//const methodOverride = require("method-override");
 const MongoClient = require('mongodb').MongoClient;
-const mongoose = require('mongoose');
+
 
 const router = express.Router();
 var url = "mongodb://localhost:27017/";
@@ -53,8 +56,9 @@ MongoClient.connect(url, function(err, db) {
 
 app.use( bodyParser.json() );
 //app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors())
 app.use(bodyParser.json({ type: 'application/json' }));
-app.use(methodOverride());
+app.use(cors());
 
 
 
@@ -64,11 +68,12 @@ app.get('/', function(req, res) {
    res.send("Hello World!");
 });
 //-------------CART----------------
-app.post('/cart', function(req, res) {
+/*app.post('/cart', function(req, res) {
    MongoClient.connect(url, function(err, db) {
      if (err) throw err;
      var dbo = db.db("mydb");
      var payment = {
+       _id: req.body._id,
        Author: req.body.Author,
        Img: req.body.Img,
        Description: req.body.Description,
@@ -84,6 +89,29 @@ app.post('/cart', function(req, res) {
        db.close()
 });
 });
+});*/
+app.post("/cart", (req, res) => {
+     const {product, token} = req.body;
+     console.log("PRODUCT", req.body);
+     console.log("PRICE", req.body.Price);
+     const idempontencyKey = uuidv4()
+
+     return stripe.costumers.create({
+       email: token.email,
+       source: token.id
+     }).then(costumer => {
+       stripe.charges.create({
+         amount: product.price * 100,
+         currency: 'eur',
+         costumer: costumer.id,
+         receipt_email: token.email,
+         description: product.name,
+       }, {idempontencyKey})
+          res.send("Hello World!");
+     })
+     .then(result => res.status(200).json(result))
+
+     .catch(err => console.log(err))
 });
 
 app.get('/cart', function(req, res) {
@@ -99,7 +127,7 @@ app.get('/cart', function(req, res) {
     });
   });
 });
-app.get('/cart', function(req, res){
+/*app.get('/cart', function(req, res){
   fs.readFile('items.json', function(error){
     if(error) {
       res.status(500).end()
@@ -110,8 +138,8 @@ app.get('/cart', function(req, res){
    })
  }
 })
-})
-  
+})*/
+
 app.get('/cart/:_id', function(req, res) {
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
@@ -154,7 +182,8 @@ MongoClient.connect(url, function(err, db) {
             Description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
             Title: "de prueba",
             Genre: "nooo",
-            Type: "Drum kit"
+            Type: "Drum kit",
+            Price: 55
         };
   dbo.collection("Albums").insertOne(myobj, function(err, result) {
     if (err) throw err;
