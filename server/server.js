@@ -7,6 +7,8 @@ const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
 console.log(stripeSecretKey, stripePublicKey)
 const express = require('express')
 const app = express()
+const readline = require('readline');
+var nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
@@ -68,28 +70,7 @@ app.get('/', function(req, res) {
    res.send("Hello World!");
 });
 //-------------CART----------------
-/*app.post('/cart', function(req, res) {
-   MongoClient.connect(url, function(err, db) {
-     if (err) throw err;
-     var dbo = db.db("mydb");
-     var payment = {
-       _id: req.body._id,
-       Author: req.body.Author,
-       Img: req.body.Img,
-       Description: req.body.Description,
-       Title: req.body.Title,
-       Genre: req.body.Genre,
-       Type: req.body.Type,
-       Price: req.body.Price
-     };
-     dbo.collection("Payments").insertOne(payment, function(err, result) {
-       if (err) throw err;
-       console.log("1 document inserted");
-       res.json({result: "success"});
-       db.close()
-});
-});
-});*/
+
 app.post("/cart", (req, res) => {
 
      const {product, token} = req.body;
@@ -107,9 +88,33 @@ app.post("/cart", (req, res) => {
          customer: customer.id,
          //email: token.email,
          description: product.title
-       })
-          .catch(err => console.log(err))
-     }).then(result => res.status(200).json(result))
+       }).catch(err => console.log(err))
+     }).then(function sendEmail() {
+       console.log("this is the function!")
+      var bodyMessage = '<table>';
+      var mail = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'ju.val.roy@gmail.com',
+          pass: 'Manolito.1'
+        }
+      });
+       var mailOptions = {
+          from: 'ju.val.roy@gmail.com',
+          to: 'juan-royo@hotmail.com',
+          subject: 'Sending Email using Node.js',
+          html: `<td><h1>thank for buying ${req.body.title} price ${req.body.total}</h1></td><td><p>That was easy!</p></td>`
+        }
+        mail.sendMail(mailOptions, function(error, info){
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Email sent: ' + info.response);
+          }
+        });
+
+      }).then(result =>  res.status(200).json(result))
+
 
      .catch(err => console.log(err))
 });
@@ -171,28 +176,6 @@ app.post('/contact', function(req, res) {
 });
 });
 });
-//--------POST DE LA SHOP------
-/*app.post('/shop', function (req, res) {
-MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("mydb");
-  var myobj = {
-            Author: "hey que dicen los otros",
-            Img: "https://media.giphy.com/media/4iBEbXGK03neo/giphy.gif",
-            Description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-            Title: "de prueba",
-            Genre: "nooo",
-            Type: "Drum kit",
-            Price: 55
-        };
-  dbo.collection("Albums").insertOne(myobj, function(err, result) {
-    if (err) throw err;
-    console.log("1 document inserted");
-    res.json({result: "success"});
-    db.close();
-  });
-});
-});*/
 
 //-------------SHOP-----------------
 app.get('/shop', function(req, res) {
