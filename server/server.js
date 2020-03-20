@@ -91,25 +91,25 @@ app.get('/', function(req, res) {
 });
 });*/
 app.post("/cart", (req, res) => {
+
      const {product, token} = req.body;
-     console.log("PRODUCT", req.body);
-     console.log("PRICE", req.body.Price);
+     console.log("PRODUCT", product);
+     console.log("PRICE", product.total);
      const idempontencyKey = uuidv4()
 
-     return stripe.costumers.create({
-       email: token.email,
-       source: token.id
-     }).then(costumer => {
+     return stripe.customers.create({
+       //email: token.email,
+       source: token.id,
+     }).then(customer => {
        stripe.charges.create({
-         amount: product.price * 100,
+         amount: product.total * 100,
          currency: 'eur',
-         costumer: costumer.id,
-         receipt_email: token.email,
-         description: product.name,
-       }, {idempontencyKey})
-          res.send("Hello World!");
-     })
-     .then(result => res.status(200).json(result))
+         customer: customer.id,
+         //email: token.email,
+         description: product.title
+       })
+          .catch(err => console.log(err))
+     }).then(result => res.status(200).json(result))
 
      .catch(err => console.log(err))
 });
