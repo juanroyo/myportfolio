@@ -7,7 +7,7 @@ import Item6 from '../Images/item6.jpg'
 import {  ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY } from '/Users/juanroyo/Documents/MyPortfolio/my-app/src/actions/action-types/cart-actions.js'
 
 
-const initState = {
+var initState = {
     items: [
         {id:1,title:'Winter body', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:110,img:Item1},
         {id:2,title:'Adidas', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:80,img: Item2},
