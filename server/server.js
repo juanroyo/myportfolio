@@ -7,6 +7,7 @@ const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
 console.log(stripeSecretKey, stripePublicKey)
 const express = require('express')
 const app = express()
+const http = require('http')
 const readline = require('readline');
 var nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
@@ -56,9 +57,8 @@ MongoClient.connect(url, function(err, db) {
   });
 });
 
-app.use( bodyParser.json() );
-//app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cors())
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(cors());
 
@@ -66,7 +66,8 @@ app.use(cors());
 
 
 //--------HOME GET------------
-app.get('/', function(req, res) {
+app.post('/', function(req, res) {
+  console.log("PRODUCT", req.body);
    res.send("Hello World!");
 });
 //-------------CART----------------
@@ -74,22 +75,27 @@ app.get('/', function(req, res) {
 app.post("/cart", (req, res) => {
 
      const {product, token} = req.body;
-     console.log("PRODUCT", product);
+     console.log("PRODUCT", product.title);
      console.log("PRICE", product.total);
      const idempontencyKey = uuidv4()
-
+     const producto = req.body.title;
      return stripe.customers.create({
-       //email: token.email,
-       source: token.id,
+       email: token.email,
+       source: token.id
      }).then(customer => {
        stripe.charges.create({
          amount: product.total * 100,
          currency: 'eur',
          customer: customer.id,
          //email: token.email,
-         description: product.title
+         description: product.title,
+
        }).catch(err => console.log(err))
      }).then(function sendEmail() {
+       var emailAddress = token.email;
+       var title =  req.body.title;
+       console.log(product)
+       //var total = req.body.total;
        console.log("this is the function!")
       var bodyMessage = '<table>';
       var mail = nodemailer.createTransport({
@@ -101,9 +107,9 @@ app.post("/cart", (req, res) => {
       });
        var mailOptions = {
           from: 'ju.val.roy@gmail.com',
-          to: 'juan-royo@hotmail.com',
+          to: emailAddress,
           subject: 'Sending Email using Node.js',
-          html: `<td><h1>thank for buying ${req.body.title} price ${req.body.total}</h1></td><td><p>That was easy!</p></td>`
+          html: `<td><h1>thanks for buying ${product.addedItems.title} price ${product.total}</h1></td><td><p>That was easy!</p></td>`
         }
         mail.sendMail(mailOptions, function(error, info){
           if (error) {
@@ -111,11 +117,22 @@ app.post("/cart", (req, res) => {
           } else {
             console.log('Email sent: ' + info.response);
           }
-        });
-
-      }).then(result =>  res.status(200).json(result))
-
-
+        })
+        }).then(MongoClient.connect(url, function(err, db) {
+          if (err) throw err;
+          var dbo = db.db("mydb");
+          var payment = {
+            email: token.email,
+            products: req.body,
+            total: req.body.total
+          };
+          dbo.collection("Payments").find(payment).toArray(function(err, result) {
+            if (err) throw err;
+            console.log(result)
+            res.json(result);
+            db.close();
+          })
+        })).then(result =>  res.status(200).json(result))
      .catch(err => console.log(err))
 });
 
@@ -161,20 +178,51 @@ app.get('/cart/:_id', function(req, res) {
 
 //--------CONTACT POST-------------
 app.post('/contact', function(req, res) {
-  MongoClient.connect(url, function(err, db) {
+  function sendEmail() {
+    var emailAddress = req.body.email;
+    var message =  req.body.textarea;
+    //var total = req.body.total;
+    console.log("this is the function!")
+   var bodyMessage = '<table>';
+   var mail = nodemailer.createTransport({
+     service: 'gmail',
+     auth: {
+       user: 'ju.val.roy@gmail.com',
+       pass: 'Manolito.1'
+     }
+   });
+    var mailOptions = {
+       from:  emailAddress,
+       to: 'ju.val.roy@gmail.com',
+       subject: 'Sending Email using Node.js',
+       html: `<td><p>${message}</p></td><td><p>That was easy!${emailAddress}</p></td>`
+     }
+     mail.sendMail(mailOptions, function(error, info){
+       if (error) {
+         console.log(error);
+       } else {
+         console.log('Email sent: ' + info.response);
+       }
+     });
+   }
+   sendEmail()
+     MongoClient.connect(url, function(err, db) {
     if (err) throw err;
+    console.log("hola" + req.body);
     var dbo = db.db("mydb");
     var myobj = {
-          Email: req.body.Email,
-          Message: req.body.Message
+          email: req.body.email,
+          textarea: req.body.textarea
           };
     dbo.collection("Messages").insertOne(myobj, function(err, result) {
       if (err) throw err;
       console.log("1 document inserted");
-      res.json({result: "success"});
+      res.json(result);
       db.close();
-});
-});
+
+})
+})
+
 });
 
 //-------------SHOP-----------------
