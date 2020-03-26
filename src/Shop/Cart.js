@@ -23,9 +23,9 @@ class Cart extends Component{
         let addedItems = this.props.items.length ?
             (
                 this.props.items.map(item=>{
+                  {console.log(this.props.items.length)}
                     return(
-
-                        <li className="collection-item avatar" key={item.id}>
+                        <li className="collection-item avatar" key={item._id}>
                                     <div className="item-img">
                                         <img src={item.img} alt={item.img} className=""/>
                                     </div>
@@ -42,7 +42,7 @@ class Cart extends Component{
                                             <Link to="/cart"><i className="material-icons">arrow_drop_down</i></Link>
                                         </div>
 
-                                        <button className="waves-effect waves-light btn pink remove">Remove</button>
+                                        <button className="waves-effect waves-light btn pink remove" onClick={()=>{this.handleRemove(item._id)}}>Remove</button>
                                     </div>
 
                                </li>

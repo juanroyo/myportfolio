@@ -4,21 +4,27 @@ import { addToCart } from '/Users/juanroyo/Documents/MyPortfolio/my-app/src/acti
 
 class Shop extends Component{
 
-  handleClick = (id)=>{
-        this.props.addToCart(id);
+  handleClick = (_id) => {
+        this.props.addToCart(_id);
     }
 
   render(){
         let itemList = this.props.items.map(item=>{
             return(
-                <div className="card" key={item.id}>
+
+                <div className="card" key={item._id}>
+                  {console.log(item._id)}
                         <div className="card-image">
-                            <img src={item.img} alt={item.title}/>
+                            <img src={item.img}/>
+                          {/*  <img src={item.img} alt={item.title}/>*/}
                             <span className="card-title">{item.title}</span>
-                            <span to="/" className="btn-floating halfway-fab waves-effect waves-light red" onClick={()=>{this.handleClick(item.id)}}><i className="material-icons">add</i></span>
+                            <p>{item._id}</p>
+                            <span to="/" className="btn-floating halfway-fab waves-effect waves-light red" onClick={()=>{this.handleClick(item._id)}}><i className="material-icons">add</i></span>
                         </div>
 
                         <div className="card-content">
+                            <p>{item.author}</p>
+                            <p>{item.genre}</p>
                             <p>{item.desc}</p>
                             <p><b>Price: {item.price}$</b></p>
                         </div>
@@ -35,7 +41,7 @@ class Shop extends Component{
         )
     }
 }
-const mapStateToProps = (state)=>{
+const mapStateToProps = (state) => {
     return {
       items: state.items
     }
@@ -43,7 +49,7 @@ const mapStateToProps = (state)=>{
   const mapDispatchToProps= (dispatch)=>{
 
     return{
-        addToCart: (id)=>{dispatch(addToCart(id))}
+        addToCart: (_id)=>{dispatch(addToCart(_id))}
     }
 }
 
