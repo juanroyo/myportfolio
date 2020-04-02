@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { removeItem,addQuantity,subtractQuantity} from '/Users/juanroyo/Documents/MyPortfolio/my-app/src/actions/cartActions'
+import { removeItem,addQuantity,subtractQuantity} from '../actions/cartActions'
 import Recipe from '../Recipe.js'
 
 class Cart extends Component{
@@ -17,6 +17,7 @@ class Cart extends Component{
     handleSubtractQuantity = (id)=>{
         this.props.subtractQuantity(id);
     }
+//    let addedProductsForMongo = this.props.items._id;
 
     render(){
 
@@ -37,10 +38,10 @@ class Cart extends Component{
                                         <p>
                                             <b>Quantity: {item.quantity}</b>
                                         </p>
-                                        <div className="add-remove">
+                                        {/*<div className="add-remove">
                                             <Link to="/cart"><i className="material-icons">arrow_drop_up</i></Link>
                                             <Link to="/cart"><i className="material-icons">arrow_drop_down</i></Link>
-                                        </div>
+                                        </div>*/}
 
                                         <button className="waves-effect waves-light btn pink remove" onClick={()=>{this.handleRemove(item._id)}}>Remove</button>
                                     </div>
