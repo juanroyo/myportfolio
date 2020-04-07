@@ -20,11 +20,15 @@ class Cart extends Component{
 //    let addedProductsForMongo = this.props.items._id;
 
     render(){
-
+      var cosas = []
+        this.props.items.map(item=>{
+          return cosas = item._id
+        })
+        console.log(cosas)
         let addedItems = this.props.items.length ?
             (
                 this.props.items.map(item=>{
-                  {console.log(this.props.items.length)}
+
                     return(
                         <li className="collection-item avatar" key={item._id}>
                                     <div className="item-img">

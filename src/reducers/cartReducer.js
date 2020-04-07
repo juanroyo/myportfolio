@@ -39,7 +39,7 @@ function GetMoviesFromMongo(){
 }
 const cartReducer= (state = initState,action)=>{
   //INSIDE HOME COMPONENT
-  console.log(state)
+
       if(action.type === ADD_TO_CART){
             let addedItem = state.items.find(item=> item._id === action._id)
             console.log(addedItem = state.items.find(item=> item._id === action._id))
