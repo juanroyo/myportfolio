@@ -37,6 +37,9 @@ function GetMoviesFromMongo(){
         //this.setState({ Movie: res })
       });
 }
+
+
+
 const cartReducer= (state = initState,action)=>{
   //INSIDE HOME COMPONENT
 
