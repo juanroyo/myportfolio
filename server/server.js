@@ -5,40 +5,38 @@ if (process.env.NODE_ENV !== 'production') {
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
 const emailp = process.env.EMAILP;
-console.log(stripeSecretKey, stripePublicKey, emailp)
 const express = require('express')
 const app = express()
 const http = require('http')
 const readline = require('readline');
-var nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
+const bcrypt = require('bcrypt')
+const passport = require('passport')
 const stripe = require("stripe")("sk_test_qi9RJCWRFOU6Ry4X8m1kvNad002D09YcIO")
 const { v4: uuidv4 } = require('uuid');
 const cors = require("cors")
-//const methodOverride = require("method-override");
+const flash = require('express-flash')
+const session = require('express-session')
+const methodOverride = require('method-override')
+
 const MongoClient = require('mongodb').MongoClient;
-
-
 const router = express.Router();
 var url = "mongodb://localhost:27017/";
-
 app.set('db', require('./models.js'));
 
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(cors());
 
 
-//--------HOME GET------------
-app.post('/', function(req, res) {
-  console.log("PRODUCT", req.body);
-   res.send("Hello World!");
-});
-//-------------CART----------------
 
+
+//-------------CART----------------
 app.post("/cart", (req, res) => {
 
      const {product, token} = req.body;
@@ -123,18 +121,7 @@ app.get('/cart', function(req, res) {
     });
   });
 });
-/*app.get('/cart', function(req, res){
-  fs.readFile('items.json', function(error){
-    if(error) {
-      res.status(500).end()
-    } else {
-   res.render('/cart', {
-     stripePublicKey: stripePublicKey,
-     items: JSON.parse(data)
-   })
- }
-})
-})*/
+
 
 app.get('/cart/:_id', function(req, res) {
   MongoClient.connect(url, function(err, db) {
@@ -207,7 +194,7 @@ app.get('/shop', function(req, res) {
 
     dbo.collection("Albums").find().toArray(function(err, result) {
       if (err) throw err;
-      console.log(result)
+
       res.json(result);
       db.close();
     });
@@ -230,11 +217,6 @@ app.get('/shop/:_id', function(req, res) {
 });
 
 
-app.post('/', (err, res) => {
-	res.status(200);
-	res.send('working');
-	res.end();
-});
 
 app.use(router);
 
