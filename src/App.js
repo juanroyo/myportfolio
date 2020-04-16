@@ -14,16 +14,18 @@ import Login from './Login/login.js';
 import Portfolio from './Portfolio/Portfolio.js';
 import Contact from './Contact/Contact.js';
 
+
 class App extends Component {
-  constructor() {
-    super();
-    this.state = ({
+  constructor(props) {
+    super(props);
+    this.state = {
       user: null,
-    });
+    };
     this.authListener = this.authListener.bind(this);
   }
   componentDidMount() {
    this.authListener();
+
  }
 
  authListener() {
@@ -39,14 +41,13 @@ class App extends Component {
    });
  }
  render(){
+
   return (
     <div>
     <BrowserRouter>
     <div className="App">
-    {/*  <CartProvider>*/}
-      <Navbar/>
+      <Navbar user={this.state.user} />
         <Switch>
-
             <Route path="/shop">
               <Shop />
             </Route>
@@ -56,23 +57,16 @@ class App extends Component {
             <Route path="/contact">
               <Contact />
             </Route>
-            <Route path="/register">
-              <Register />
-            </Route>
             <Route path="/login">
-              <Login />
+              <Login user={this.state.user} />
             </Route>
             <Route path="/cart">
-              <Cart />
+              <Cart user={this.state.user} />
             </Route>
             <Route path="/">
               <Home />
             </Route>
-
           </Switch>
-
-    {/* <Footer/>*/}
-
         </div>
       </BrowserRouter>
 </div>

@@ -20,11 +20,8 @@ class Cart extends Component{
 //    let addedProductsForMongo = this.props.items._id;
 
     render(){
-      var cosas = []
-        this.props.items.map(item=>{
-          return cosas = item._id
-        })
-        console.log(cosas)
+      const user = this.props.user;
+    
         let addedItems = this.props.items.length ?
             (
                 this.props.items.map(item=>{
@@ -66,7 +63,7 @@ class Cart extends Component{
                         {addedItems}
                     </ul>
                 </div>
-                <Recipe  />
+                <Recipe user={user} />
             </div>
        )
     }

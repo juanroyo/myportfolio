@@ -5,14 +5,17 @@ import fire from '../config/fire';
 export default class Login extends Component {
   constructor(props) {
   super(props);
-
   this.state = {
     email: '',
-    password: ''
+    password: '',
+    user: props.user,
+    messageerror: '',
+    messagesuccess: "",
   };
   this.login = this.login.bind(this);
   this.handleChange = this.handleChange.bind(this);
   this.signup = this.signup.bind(this);
+  this.error = this.error.bind(this);
 }
 handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -20,10 +23,20 @@ handleChange(e) {
 
   login(e) {
     e.preventDefault();
+
     fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-    }).catch((error) => {
+
+
+    }).then(
+      this.setState({email: "", password: "", messagesuccess: "logged in"})
+
+    )
+    .catch((error) => {
+
+        this.setState({messageerror: error, messagesuccess: ""})
         console.log(error);
       });
+
   }
 
   signup(e){
@@ -31,12 +44,22 @@ handleChange(e) {
     fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
     }).then((u)=>{console.log(u)})
     .catch((error) => {
-        console.log(error);
+          console.log(error);
       })
   }
+error(){
+
+  if (this.state.messageerror !== "") {
+
+    return <p>{this.state.messageerror.message}</p>
+  }
+  }
+
   render() {
+
   return(
     <div className="col-md-6">
+
         <form>
        <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
@@ -49,8 +72,11 @@ handleChange(e) {
        </div>
        <button type="submit" onClick={this.login} class="btn btn-primary">Login</button>
        <button onClick={this.signup} style={{marginLeft: '25px'}} className="btn btn-success">Signup</button>
+
   </form>
 
+<div>{this.error()}</div>
+<div>{this.state.messagesuccess}</div>
   </div>
   )
 }

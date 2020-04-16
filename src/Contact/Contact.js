@@ -8,7 +8,9 @@ export default class Contact extends Component {
   		super(props)
   		this.state = {
   			email: '',
-  			textarea: ''
+  			textarea: '',
+        successfullMessage: '',
+        errorMessage: ''
   		}
   	}
     changeHandler = e => {
@@ -21,10 +23,15 @@ export default class Contact extends Component {
     		axios
     			.post('http://localhost:8080/contact', this.state)
     			.then(response => {
-    				console.log(response)
+    				console.log(response.status)
+            if (response.status == 200) {
+              this.setState({successfullMessage: "succesfully sent message!", email: '', textarea: '', errorMessage: ''})
+            }
+
     			})
     			.catch(error => {
     				console.log(error)
+            this.setState({errorMessage: "sorry, your message could't be sent", successfullMessage:"", email: '', textarea: ''})
     			})
     	}
 
@@ -57,6 +64,8 @@ render(){
       Submit
     </Button>
   </Form>
+  <div>{this.state.successfullMessage}</div>
+  <div>{this.state.errorMessage}</div>
    </div>
   </div>
   </div>

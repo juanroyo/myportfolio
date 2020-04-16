@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 import StripeCheckout from "react-stripe-checkout";
 //import { addShipping } from './actions/cartActions'
 class Recipe extends Component{
-
+state = {
+  message: ''
+}
     componentWillUnmount() {
             if(this.refs.shipping.checked)
                 this.props.substractShipping()
@@ -18,7 +20,10 @@ class Recipe extends Component{
     }
 
     render(){
+      const user = this.props.user
+      console.log(user)
       const makePayment = token => {
+        if (this.props.user !== null) {
         const body = {
           token,
           product: this.props,
@@ -36,7 +41,10 @@ class Recipe extends Component{
           console.log("STATUS", status)
         })
         .catch(error => console.log(error))
+      } else {
+        this.setState({message: "you're not logged in, please login or register to complete your payment"})
       }
+    }
         return(
             <div className="container">
                 <div className="collection">
@@ -59,6 +67,7 @@ class Recipe extends Component{
                          </StripeCheckout>
                         <button className="waves-effect waves-light btn">Checkout</button>
                     </div>
+                    <div>{this.state.message}</div>
                  </div>
         )
     }
