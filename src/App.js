@@ -9,7 +9,6 @@ import Home from './Home/Home.js';
 import Navbar from './Nav/Navbar';
 import Shop from './Shop/Shop.js';
 import Cart from './Shop/Cart.js';
-import Register from './Login_Register/register.js';
 import Login from './Login/login.js';
 import Portfolio from './Portfolio/Portfolio.js';
 import Contact from './Contact/Contact.js';

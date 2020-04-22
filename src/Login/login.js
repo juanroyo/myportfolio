@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../Login_Register/register.css'
+import './register.css'
 import fire from '../config/fire';
 
 export default class Login extends Component {
@@ -8,7 +8,6 @@ export default class Login extends Component {
   this.state = {
     email: '',
     password: '',
-    user: props.user,
     messageerror: '',
     messagesuccess: "",
   };

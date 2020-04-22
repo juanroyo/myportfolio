@@ -21,7 +21,7 @@ class Cart extends Component{
 
     render(){
       const user = this.props.user;
-    
+
         let addedItems = this.props.items.length ?
             (
                 this.props.items.map(item=>{
@@ -29,7 +29,7 @@ class Cart extends Component{
                     return(
                         <li className="collection-item avatar" key={item._id}>
                                     <div className="item-img">
-                                        <img src={item.img} alt={item.img} className=""/>
+                                        <img src={`http://localhost:3000/Images/${item.img}`} alt={item.img} className=""/>
                                     </div>
 
                                     <div className="item-desc">

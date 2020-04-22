@@ -7,17 +7,27 @@ import {
 } from 'react-router-dom';
 import { addToCart } from '../actions/cartActions'
 import {Form} from 'react-bootstrap'
-
+import Tooltip from "@material-ui/core/Tooltip";
+import {Howl, Howler} from 'howler';
+import ReactHowler from 'react-howler'
 class Shop extends Component {
   constructor() {
       super();
       this.state = {
         search:null,
-        genre:null
+        genre:null,
+        title: "Add",
+        playing: false
       };
+
+      this.handleToggle = this.handleToggle.bind(this)
     }
   handleClick(_id){
         this.props.addToCart(_id);
+
+        this.setState({title: "Added"})
+        var title = this.state.title;
+
       }
 
       searchSpace=(event)=>{
@@ -28,9 +38,17 @@ class Shop extends Component {
    let keyword = event.target.value;
    this.setState({genre:keyword})
  }
+
+  handleToggle () {
+     this.setState({
+       playing: !this.state.playing
+     })
+   }
+
+
 render(){
 
-console.log(this.state.genre)
+
         /*let itemList = this.props.items.map(item=>{
             return(
 
@@ -90,13 +108,23 @@ console.log(this.state.genre)
                       return(
                           <div className="card" key={item._id}>
                                   <div className="card-image">
-                                       <Link to={`shop/${item._id}`}><img src={item.img}/></Link>
+                                       <Link to={`shop/${item._id}`}><img src={`http://localhost:3000/Images/${item.img}`}/></Link>
                                       <span className="card-title">{item.title}</span>
+                                      <Tooltip title={this.state.title} aria-label="add">
                                       <span to="/" className="btn-floating halfway-fab waves-effect waves-light red" onClick={()=>{this.handleClick(item._id)}}><i className="material-icons">add</i></span>
-                                  </div>
+                                      </Tooltip>
+                                </div>
                                   <div className="card-content">
                                       <p>{item.author}</p>
                                       <p>{item.genre}</p>
+                                        <ReactHowler
+                                         src={['./Audio/Sequences.mp3']}
+                                         playing={this.state.playing}
+                                       />
+
+                                     <button onClick={this.handleToggle}>
+                                      {(this.state.playing) ? 'Pause' : 'Play'}
+                                    </button>
                                       <p>{item.desc}</p>
                                       <p><b>Price: {item.price}€</b></p>
                                   </div>

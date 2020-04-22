@@ -20,10 +20,8 @@ state = {
     }
 
     render(){
-      const user = this.props.user
-      console.log(user)
+
       const makePayment = token => {
-        if (this.props.user !== null) {
         const body = {
           token,
           product: this.props,
@@ -41,10 +39,9 @@ state = {
           console.log("STATUS", status)
         })
         .catch(error => console.log(error))
-      } else {
-        this.setState({message: "you're not logged in, please login or register to complete your payment"})
-      }
     }
+
+  
         return(
             <div className="container">
                 <div className="collection">
@@ -57,6 +54,7 @@ state = {
                         <li className="collection-item"><b>Total: {this.props.total} $</b></li>
                     </div>
                     <div className="checkout">
+                      <button className="waves-effect waves-light btn">
                         <StripeCheckout
                           stripeKey= "pk_test_4B9W2axLr9LK45DRsR9W2Fhv00zdGlIUBT"
                           token={makePayment}
@@ -65,7 +63,7 @@ state = {
                            >
                            Compra {this.props.total} €
                          </StripeCheckout>
-                        <button className="waves-effect waves-light btn">Checkout</button>
+                       </button>
                     </div>
                     <div>{this.state.message}</div>
                  </div>

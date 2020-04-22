@@ -1,9 +1,9 @@
-import Item1 from '../Images/item1.jpg'
-import Item2 from '../Images/item2.jpg'
-import Item3 from '../Images/item3.jpg'
-import Item4 from '../Images/item4.jpg'
-import Item5 from '../Images/item5.jpg'
-import Item6 from '../Images/item6.jpg'
+/*import Item1 from '/Users/juanroyo/Documents/MyPortfolio/my-app/public/Images/item1.jpg'
+import Item2 from '/Users/juanroyo/Documents/MyPortfolio/my-app/public/Images/item2.jpg'
+import Item3 from '/Users/juanroyo/Documents/MyPortfolio/my-app/public/Images/item3.jpg'
+import Item4 from '/Users/juanroyo/Documents/MyPortfolio/my-app/public/Images/item4.jpg'
+import Item5 from '/Users/juanroyo/Documents/MyPortfolio/my-app/public/Images/item5.jpg'
+import Item6 from '/Users/juanroyo/Documents/MyPortfolio/my-app/public/Images/item6.jpg'*/
 import {  ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY } from '../actions/action-types/cart-actions.js'
 
 

@@ -59,10 +59,15 @@ app.post("/cart", (req, res) => {
        var products = req.body;
        JSON.stringify(products)
        var productosParaEnviar = products.product.addedItems;
-       var message = []
+       var ids = []
+       productosParaEnviar.map(function(item, index) {
+         return ids = item._id
+         })
+         
+       console.log("hola"+ids)
        console.log("PRICE", productosParaEnviar);
-
        console.log("this is the function!")
+
       var emailAddress = token.email;
       var bodyMessage = '<table>';
       var mail = nodemailer.createTransport({
@@ -82,7 +87,10 @@ app.post("/cart", (req, res) => {
             return item.genre
           })}, ${productosParaEnviar.map(function(item, index) {
             return item.quantity
-          })}, price ${product.total}</h1></td><td><p>That was easy!</p></td>`
+          })}, ${productosParaEnviar.map(function(item, index) {
+            return item.img
+          })}
+          , price ${product.total}</h1></td><td><p>That was easy!</p></td>`
         }
         mail.sendMail(mailOptions, function(error, info){
           if (error) {
@@ -123,7 +131,7 @@ app.get('/cart', function(req, res) {
 });
 
 
-app.get('/cart/:_id', function(req, res) {
+app.get('/cart/:id', function(req, res) {
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("mydb");
