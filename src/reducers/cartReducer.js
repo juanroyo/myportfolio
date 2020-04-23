@@ -33,12 +33,8 @@ function GetMoviesFromMongo(){
       .then(res => res.json())
       .then(res => {
         initState.items = res;
-
-        //this.setState({ Movie: res })
       });
 }
-
-
 
 const cartReducer= (state = initState,action)=>{
   //INSIDE HOME COMPONENT
@@ -70,18 +66,18 @@ const cartReducer= (state = initState,action)=>{
                   }
               }
               if(action.type === REMOVE_ITEM){
-      let itemToRemove= state.addedItems.find(item=> action._id === item._id)
-      let new_items = state.addedItems.filter(item=> action._id !== item._id)
+                  let itemToRemove= state.addedItems.find(item=> action._id === item._id)
+                  let new_items = state.addedItems.filter(item=> action._id !== item._id)
 
-      //calculating the total
-      let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity )
-      console.log(itemToRemove)
-      return{
-          ...state,
-          addedItems: new_items,
-          total: newTotal
-      }
-  }
+                  //calculating the total
+                  let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity )
+                  console.log(itemToRemove)
+                  return{
+                      ...state,
+                      addedItems: new_items,
+                      total: newTotal
+                  }
+              }
   //INSIDE CART COMPONENT
    if(action.type=== ADD_QUANTITY){
        let addedItem = state.items.find(item=> item._id === action._id)
