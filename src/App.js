@@ -47,8 +47,10 @@ class App extends Component {
     <div className="App">
       <Navbar user={this.state.user} />
         <Switch>
-            <Route path="/shop">
-              <Shop />
+            <Route path="/shop" component= {Shop}></Route>
+
+            <Route path="/shop/:id" component= {Shop}>
+              
             </Route>
             <Route path="/portfolio">
               <Portfolio />
