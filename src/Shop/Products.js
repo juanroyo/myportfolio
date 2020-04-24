@@ -4,18 +4,16 @@ import {
   Link,
   Route // for later
 } from 'react-router-dom';
-
+import {Form} from 'react-bootstrap';
 import { addToCart } from '../actions/cartActions'
-
+import Showproduct from './Showproduct.js'
 import React, { useState, useEffect } from 'react';
 
 
-
-
-function Shop (  props, {match} )  {
+function Products (  props, {match} )  {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-
+  const items = props.items;
   const handleChange = event => {
   setSearchTerm(event.target.value);
 
@@ -48,7 +46,7 @@ const handleClick = (_id) => {
                       return(
                           <div className="card" key={item._id}>
                                   <div className="card-image">
-                                       <Link to={`${props.match.url}/${item._id}`}><img src={`http://localhost:3000/Images/${item.img}`}/></Link>
+                                       <Link to={`/Showproduct/${item._id}`}><img src={`http://localhost:3000/Images/${item.img}`}/></Link>
                                       <span className="card-title">{item.title}</span>
                                       <span className="btn-floating halfway-fab waves-effect waves-light red" onClick={()=>{handleClick(item._id)}}><i className="material-icons">add</i></span>
                                 </div>
@@ -58,15 +56,17 @@ const handleClick = (_id) => {
                                       <p>{item.desc}</p>
                                       <p><b>Price: {item.price}€</b></p>
                                   </div>
-                                    {console.log(props)}
+
                            </div>
                       )
                   })}
                 </div>
                 {/*<Route path={`${props.match.path}/:id`} component={Topico}/>*/}
-                  <Route path={`${props.match.path}/:id`}>
-                    <Topico props={props} match={props.match.params}/>
-                  </Route>
+
+                 <Route
+                  path="/Showproduct/:id"
+                  render={(props) => <Showproduct {...props} />}
+                />
             </div>
         )
 
@@ -84,4 +84,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(Shop)
+export default connect(mapStateToProps,mapDispatchToProps)(Products)
