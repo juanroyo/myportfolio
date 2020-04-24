@@ -22,8 +22,7 @@ polla() {
 
    render(props){
 const user = this.props.user
-console.log(user)
-console.log(this.state.logged)
+
     return(
             <nav className="nav-wrapper">
                 <div className="container">
