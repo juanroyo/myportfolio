@@ -20,7 +20,21 @@ state = {
     }
 
     render(){
-
+      console.log(this.props.user)
+      const notLogged = () => {
+        if (this.props.user != null) {
+        return(<StripeCheckout
+            stripeKey= "pk_test_4B9W2axLr9LK45DRsR9W2Fhv00zdGlIUBT"
+            token={makePayment}
+            name="buy mis cosas"
+            amount={this.props.total * 100}
+             >
+             Compra {this.props.total} €
+           </StripeCheckout>)
+        } else {
+          return(<a href="http://localhost:3000/login">you need to be logged in first</a>)
+        }
+      }
       const makePayment = token => {
         const body = {
           token,
@@ -41,7 +55,7 @@ state = {
         .catch(error => console.log(error))
     }
 
-  
+
         return(
             <div className="container">
                 <div className="collection">
@@ -55,14 +69,7 @@ state = {
                     </div>
                     <div className="checkout">
                       <button className="waves-effect waves-light btn">
-                        <StripeCheckout
-                          stripeKey= "pk_test_4B9W2axLr9LK45DRsR9W2Fhv00zdGlIUBT"
-                          token={makePayment}
-                          name="buy mis cosas"
-                          amount={this.props.total * 100}
-                           >
-                           Compra {this.props.total} €
-                         </StripeCheckout>
+                      {notLogged()}
                        </button>
                     </div>
                     <div>{this.state.message}</div>

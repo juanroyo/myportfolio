@@ -1,4 +1,4 @@
-const initState = {
+const Products = {
     items: [
 
     ],
@@ -15,7 +15,7 @@ function GetMoviesFromMongo(){
   fetch("http://localhost:8080/shop")
       .then(res => res.json())
       .then(res => {
-        initState.items = res;
+        Products.items = res;
       });
 }
-export default initState
+export default Products

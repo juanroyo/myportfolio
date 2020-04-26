@@ -4,8 +4,7 @@ import React, { Component } from 'react';
 import find from 'lodash/find';
 import { addToCart } from '../actions/cartActions'
 import { Link } from 'react-router-dom';
-import initState from '/Users/juanroyo/Documents/MyPortfolio/my-app/src/Data/Data.js'
-
+import initState from '../Data/Data.js'
 const Showproduct = ( props) => {
 const product = initState.items.find(({ _id }) => _id === props.match.params.id)
 const handleClick = (_id) => {

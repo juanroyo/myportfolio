@@ -13,10 +13,8 @@ import React, { useState, useEffect } from 'react';
 function Products (  props, {match} )  {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const items = props.items;
   const handleChange = event => {
   setSearchTerm(event.target.value);
-
 };
   useEffect(() => {
     const results = props.items.filter(item =>
@@ -28,7 +26,6 @@ function Products (  props, {match} )  {
 const handleClick = (_id) => {
           props.addToCart(_id);
         }
-
 
         return(
             <div className="container">
@@ -61,8 +58,6 @@ const handleClick = (_id) => {
                       )
                   })}
                 </div>
-                {/*<Route path={`${props.match.path}/:id`} component={Topico}/>*/}
-
                  <Route
                   path="/Showproduct/:id"
                   render={(props) => <Showproduct {...props} />}
