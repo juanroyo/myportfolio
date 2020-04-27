@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { removeItem,addQuantity,subtractQuantity} from '../actions/cartActions'
+import { removeItem,addQuantity,subtractQuantity, onClear} from '../actions/cartActions'
 import Recipe from '../Recipe.js'
 
 class Cart extends Component{
@@ -16,6 +16,9 @@ class Cart extends Component{
     //to substruct from the quantity
     handleSubtractQuantity = (id)=>{
         this.props.subtractQuantity(id);
+    }
+    handleClear = ()=>{
+        this.props.onClear();
     }
 //    let addedProductsForMongo = this.props.items._id;
 
@@ -45,6 +48,7 @@ class Cart extends Component{
                                         </div>*/}
 
                                         <button className="waves-effect waves-light btn pink remove" onClick={()=>{this.handleRemove(item._id)}}>Remove</button>
+
                                     </div>
 
                                </li>
@@ -63,7 +67,10 @@ class Cart extends Component{
                         {addedItems}
                     </ul>
                 </div>
+
                 <Recipe user={user} />
+                {console.log(this.props)}
+                <button onClick={()=>{this.handleClear()}}>clean</button>
             </div>
        )
     }
@@ -78,7 +85,9 @@ const mapDispatchToProps = (dispatch)=>{
     return{
         removeItem: (id)=>{dispatch(removeItem(id))},
         addQuantity: (id)=>{dispatch(addQuantity(id))},
-        subtractQuantity: (id)=>{dispatch(subtractQuantity(id))}
+        subtractQuantity: (id)=>{dispatch(subtractQuantity(id))},
+        onClear: (id)=>{dispatch(onClear())},
+
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Cart)

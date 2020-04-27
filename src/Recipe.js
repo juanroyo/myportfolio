@@ -2,13 +2,26 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import StripeCheckout from "react-stripe-checkout";
 import { onClear } from './actions/cartActions'
+import Alert from 'react-bootstrap/Alert'
+import setShow from 'react-bootstrap/Alert'
+
 class Recipe extends Component{
+
 state = {
   message: '',
   status: " "
-}
+  }
 
-
+  handleClear = ()=>{
+      return (<Alert variant="danger" onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+        <p>
+          Change this and that and try again. Duis mollis, est non commodo
+          luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+          Cras mattis consectetur purus sit amet fermentum.
+        </p>
+      </Alert>)
+  }
     render(){
 
       const notLogged = () => {
@@ -44,7 +57,9 @@ state = {
           console.log("STATUS", status)
           if (status = 200){
             console.log("hola")
-           {props.onClear()}
+            this.props.onClear();
+          } else {
+            return(alert("Hello! I am an alert box!!"))
           }
         })
         .catch(error => console.log(error))
@@ -63,7 +78,7 @@ state = {
 
                        </button>
                        {console.log(this.props)}
-                       <button onClick={onClear}>clear </button>
+
                     </div>
                     <div>{this.state.message}</div>
                  </div>
@@ -83,8 +98,8 @@ const mapDispatchToProps = (dispatch)=>{
     return{
         addShipping: ()=>{dispatch({type: 'ADD_SHIPPING'})},
         substractShipping: ()=>{dispatch({type: 'SUB_SHIPPING'})},
-        onClear:()=>{dispatch({type: 'DESTROY_SESSION'})}
+        onClear: (id)=>{dispatch(onClear())},
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Recipe)
+export default connect( mapStateToProps,mapDispatchToProps)(Recipe)

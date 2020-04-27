@@ -26,6 +26,9 @@ export const addQuantity=(_id)=>{
         _id
     }
 }
-export const onClear = () => {
-    return { type: DESTROY_SESSION };
-};
+export const onClear = (_id) => {
+    return {
+      type: DESTROY_SESSION,
+      _id
+    }
+}

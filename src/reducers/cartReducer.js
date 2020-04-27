@@ -101,10 +101,17 @@ const cartReducer= (state = initState,action)=>{
                }
            }
          }
-        
-         if (action.type === DESTROY_SESSION) {
-           return state = undefined;
-      }
+
+          if(action.type=== DESTROY_SESSION){
+            console.log("hola")
+
+            return{
+            ...state,
+            addedItems: 0,
+            total: 0
+          }
+          }
+
     return state
 
 
