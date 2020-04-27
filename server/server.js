@@ -63,7 +63,7 @@ app.post("/cart", (req, res) => {
        productosParaEnviar.map(function(item, index) {
          return ids = item._id
          })
-         
+
        console.log("hola"+ids)
        console.log("PRICE", productosParaEnviar);
        console.log("this is the function!")
@@ -74,7 +74,7 @@ app.post("/cart", (req, res) => {
         service: 'gmail',
         auth: {
           user: 'ju.val.roy@gmail.com',
-          pass: emailp
+          pass: 'Manolito.1'
         }
       });
        var mailOptions = {
@@ -89,7 +89,9 @@ app.post("/cart", (req, res) => {
             return item.quantity
           })}, ${productosParaEnviar.map(function(item, index) {
             return item.img
-          })}
+          })}, ${productosParaEnviar.map(function(item, index) {
+            return `<a href="${item.download}" download>Download Here
+          <a/> `})}
           , price ${product.total}</h1></td><td><p>That was easy!</p></td>`
         }
         mail.sendMail(mailOptions, function(error, info){

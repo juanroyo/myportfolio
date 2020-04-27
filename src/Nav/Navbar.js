@@ -26,7 +26,7 @@ const user = this.props.user
     return(
             <nav className="nav-wrapper">
                 <div className="container">
-                    <Link to="/" className="brand-logo">Shopping</Link>
+                    {/*<Link to="/" className="brand-logo">Shopping</Link>*/}
                     <ul className="right">
                       <li><Link to="/">Home</Link></li>
                       <li><Link to="/shop">Shop</Link></li>

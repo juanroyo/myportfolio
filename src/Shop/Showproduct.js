@@ -1,10 +1,11 @@
-//Dependencies
+
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import find from 'lodash/find';
 import { addToCart } from '../actions/cartActions'
 import { Link } from 'react-router-dom';
 import initState from '../Data/Data.js'
+
 const Showproduct = ( props) => {
 const product = initState.items.find(({ _id }) => _id === props.match.params.id)
 const handleClick = (_id) => {
@@ -22,8 +23,7 @@ const handleClick = (_id) => {
                           <p>{product.genre}</p>
                           <p>{product.desc}</p>
                           <p><b>Price: {product.price}€</b></p>
-                              {console.log(props.match.params.id)}
-                              {console.log(product.title)}
+
                           </div>
               </div>
 

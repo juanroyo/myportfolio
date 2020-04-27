@@ -1,4 +1,4 @@
-import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING } from './action-types/cart-actions'
+import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING,DESTROY_SESSION } from './action-types/cart-actions'
 export const addToCart= (_id)=>{
   return{
         type: ADD_TO_CART,
@@ -26,3 +26,6 @@ export const addQuantity=(_id)=>{
         _id
     }
 }
+export const onClear = () => {
+    return { type: DESTROY_SESSION };
+};

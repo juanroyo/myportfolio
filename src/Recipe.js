@@ -1,26 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import StripeCheckout from "react-stripe-checkout";
-//import { addShipping } from './actions/cartActions'
+import { onClear } from './actions/cartActions'
 class Recipe extends Component{
 state = {
-  message: ''
+  message: '',
+  status: " "
 }
-    componentWillUnmount() {
-            if(this.refs.shipping.checked)
-                this.props.substractShipping()
-    }
-    handleChecked = (e)=>{
-        if(e.target.checked){
-            this.props.addShipping();
-        }
-        else{
-            this.props.substractShipping();
-        }
-    }
+
 
     render(){
-      console.log(this.props.user)
+
       const notLogged = () => {
         if (this.props.user != null) {
         return(<StripeCheckout
@@ -35,7 +25,8 @@ state = {
           return(<a href="http://localhost:3000/login">you need to be logged in first</a>)
         }
       }
-      const makePayment = token => {
+
+      const makePayment = (token, props) => {
         const body = {
           token,
           product: this.props,
@@ -49,28 +40,30 @@ state = {
           body: JSON.stringify(body)
         }).then(response => {
           console.log("RESPONSE", response)
-          const {status} = response;
+          var {status} = response;
           console.log("STATUS", status)
+          if (status = 200){
+            console.log("hola")
+           {props.onClear()}
+          }
         })
         .catch(error => console.log(error))
     }
-
-
         return(
             <div className="container">
                 <div className="collection">
                     <li className="collection-item">
-                            <label>
-                                <input type="checkbox" ref="shipping" onChange= {this.handleChecked} />
-                                <span>Shipping(+6$)</span>
-                            </label>
+
                         </li>
                         <li className="collection-item"><b>Total: {this.props.total} $</b></li>
                     </div>
                     <div className="checkout">
                       <button className="waves-effect waves-light btn">
                       {notLogged()}
+
                        </button>
+                       {console.log(this.props)}
+                       <button onClick={onClear}>clear </button>
                     </div>
                     <div>{this.state.message}</div>
                  </div>
@@ -79,16 +72,18 @@ state = {
 }
 
 const mapStateToProps = (state)=>{
-    return{
+
+    return {
         addedItems: state.addedItems,
-        total: state.total
+        total: state.total,
     }
 }
 
 const mapDispatchToProps = (dispatch)=>{
     return{
         addShipping: ()=>{dispatch({type: 'ADD_SHIPPING'})},
-        substractShipping: ()=>{dispatch({type: 'SUB_SHIPPING'})}
+        substractShipping: ()=>{dispatch({type: 'SUB_SHIPPING'})},
+        onClear:()=>{dispatch({type: 'DESTROY_SESSION'})}
     }
 }
 
