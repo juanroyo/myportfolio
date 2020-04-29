@@ -69,8 +69,7 @@ class Cart extends Component{
                 </div>
 
                 <Recipe user={user} />
-                {console.log(this.props)}
-                <button onClick={()=>{this.handleClear()}}>clean</button>
+                
             </div>
        )
     }

@@ -6,22 +6,34 @@ import Alert from 'react-bootstrap/Alert'
 import setShow from 'react-bootstrap/Alert'
 
 class Recipe extends Component{
-
-state = {
+  constructor(props) {
+    super(props);
+this.state = {
   message: '',
   status: " "
   }
+  this.handleAlert = this.handleAlert.bind(this);
+}
 
-  handleClear = ()=>{
-      return (<Alert variant="danger" onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-        <p>
-          Change this and that and try again. Duis mollis, est non commodo
-          luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-          Cras mattis consectetur purus sit amet fermentum.
-        </p>
-      </Alert>)
-  }
+handleAlert=()=>{
+  console.log(this.state.status)
+switch (this.state.status) {
+  case 200:
+  return(<div class="alert alert-success" role="alert">
+This is a success alert—check it out!
+</div>)
+break;
+  case 500:
+    return(<div class="alert alert-danger" role="alert">
+  This is a danger alert—check it out!
+  </div>)
+    break;
+  default:
+    return(<p></p>)
+}
+setTimeout(function(){ this.setState({status: ''}); }, 3000);
+}
+
     render(){
 
       const notLogged = () => {
@@ -55,8 +67,9 @@ state = {
           console.log("RESPONSE", response)
           var {status} = response;
           console.log("STATUS", status)
+          this.setState({status: status})
+
           if (status = 200){
-            console.log("hola")
             this.props.onClear();
           } else {
             return(alert("Hello! I am an alert box!!"))
@@ -75,9 +88,8 @@ state = {
                     <div className="checkout">
                       <button className="waves-effect waves-light btn">
                       {notLogged()}
-
                        </button>
-                       {console.log(this.props)}
+                       {this.handleAlert()}
 
                     </div>
                     <div>{this.state.message}</div>

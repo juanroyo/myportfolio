@@ -106,10 +106,10 @@ app.post("/cart", (req, res) => {
           var dbo = db.db("mydb");
           var payment = {
             email: token.email,
-            products: req.body,
+            products: req.body.product.addedItems,
             total: product.total
           };
-          dbo.collection("Payments").insertOne(payment, function(err, result) {
+          dbo.collection("Payments").insertOne(payment, req.body.product.addedItems, function(err, result) {
             if (err) throw err;
             console.log(result)
             res.json(result);
@@ -212,7 +212,7 @@ app.get('/shop', function(req, res) {
 });
 
 
-app.get('/shop/:_id', function(req, res) {
+app.get('/shop/:id', function(req, res) {
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("mydb");
@@ -226,6 +226,20 @@ app.get('/shop/:_id', function(req, res) {
   });
 });
 
+app.get('/login', function(req, res) {
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("mydb");
+    var emailo= req.body.email;
+
+    dbo.collection("Payments").find({}, { projection: { _id: 1, email: 1, products: 1,  total: 1 } }).toArray(function(err, result) {
+      if (err) throw err;
+
+      res.json(result);
+      db.close();
+    });
+  });
+});
 
 
 app.use(router);

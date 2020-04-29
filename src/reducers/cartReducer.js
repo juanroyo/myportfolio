@@ -12,14 +12,14 @@ const initState = {
 
 };
 function initApp() {
-  console.log("initApp");
+
   //this.GetMovies();
   GetMoviesFromMongo();
 }
 
 initApp()
 function GetMoviesFromMongo(){
-  console.log("la funcion")
+
   fetch("http://localhost:8080/shop")
       .then(res => res.json())
       .then(res => {
@@ -103,8 +103,6 @@ const cartReducer= (state = initState,action)=>{
          }
 
           if(action.type=== DESTROY_SESSION){
-            console.log("hola")
-
             return{
             ...state,
             addedItems: 0,

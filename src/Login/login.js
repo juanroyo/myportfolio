@@ -2,6 +2,28 @@ import React, { Component } from 'react';
 import './register.css'
 import fire from '../config/fire';
 
+var purchases = []
+
+function initApp() {
+
+  //this.GetMovies();
+  GetMoviesFromMongo();
+  console.log("hola")
+}
+
+initApp()
+function GetMoviesFromMongo( ){
+
+
+  fetch("http://localhost:8080/login", { method: 'GET' })
+  .then(res => res.json())
+      .then(res => {
+        purchases = res;
+
+      });
+}
+
+
 export default class Login extends Component {
   constructor(props) {
   super(props);
@@ -16,6 +38,8 @@ export default class Login extends Component {
   this.signup = this.signup.bind(this);
   this.error = this.error.bind(this);
 }
+
+
 handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -55,6 +79,13 @@ error(){
   }
 
   render() {
+const data = purchases
+
+const results = purchases.filter(item =>
+  Object.keys(item).some(key => typeof item[key] === "string" && item[key].toLowerCase().includes(this.props.user.email)))
+
+console.log(this.props.user)
+console.log(results)
 
   return(
     <div className="col-md-6">
@@ -72,10 +103,18 @@ error(){
        <button type="submit" onClick={this.login} class="btn btn-primary">Login</button>
        <button onClick={this.signup} style={{marginLeft: '25px'}} className="btn btn-success">Signup</button>
 
-  </form>
+       </form>
 
-<div>{this.error()}</div>
-<div>{this.state.messagesuccess}</div>
+        <div>{this.error()}</div>
+        <div>{this.state.messagesuccess}</div>
+        {results.map(item=>{
+            return(
+              <div key={item._id}>
+         <p>{item.title}</p>
+         <p></p>
+         <p>{item.total}</p>
+         </div>
+       )})}
   </div>
   )
 }
