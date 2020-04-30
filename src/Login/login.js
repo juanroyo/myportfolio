@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './register.css'
 import fire from '../config/fire';
+import _ from 'lodash'
 
 var purchases = []
 
@@ -8,7 +9,7 @@ function initApp() {
 
   //this.GetMovies();
   GetMoviesFromMongo();
-  console.log("hola")
+
 }
 
 initApp()
@@ -79,13 +80,12 @@ error(){
   }
 
   render() {
-const data = purchases
 
-const results = purchases.filter(item =>
-  Object.keys(item).some(key => typeof item[key] === "string" && item[key].toLowerCase().includes(this.props.user.email)))
+var products = []
 
-console.log(this.props.user)
-console.log(results)
+purchases.map(item=>{return(
+  products = item.products
+)})
 
   return(
     <div className="col-md-6">
@@ -107,15 +107,30 @@ console.log(results)
 
         <div>{this.error()}</div>
         <div>{this.state.messagesuccess}</div>
-        {results.map(item=>{
-            return(
-              <div key={item._id}>
-         <p>{item.title}</p>
-         <p></p>
-         <p>{item.total}</p>
-         </div>
-       )})}
-  </div>
-  )
+        {purchases.filter((item)=>{
+
+            if(this.props.user == null ) {
+                return (null)
+            } else if (Object.keys(item).some(key => typeof item[key] === "string" && item[key].toLowerCase().includes(this.props.user.email))){
+                 return item
+            }
+          })
+        .map(item=>{return(<div id={item._id}>
+          <p>{item.email}</p>
+          {item.products.map(item=>{return(
+          <div key={item._id}>
+          <p>{item.title}</p>
+          <img src={`http://localhost:3000/Images/${item.img}`}/>
+          <p>{item.author}</p>
+          <p>{item.genre}</p>
+          <p>{item.price}</p>
+          </div>
+        )})}
+
+          <p>{item.total}</p>
+          </div>
+        )})}
+
+</div>)
 }
 }
