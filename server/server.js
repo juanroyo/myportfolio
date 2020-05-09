@@ -14,14 +14,14 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt')
-const passport = require('passport')
+
 const stripe = require("stripe")("sk_test_qi9RJCWRFOU6Ry4X8m1kvNad002D09YcIO")
 const { v4: uuidv4 } = require('uuid');
 const cors = require("cors")
 const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
-
+const api = express();
 const MongoClient = require('mongodb').MongoClient;
 const router = express.Router();
 var url = "mongodb://localhost:27017/";

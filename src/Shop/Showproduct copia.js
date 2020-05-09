@@ -6,7 +6,6 @@ import { addToCart } from '../actions/cartActions'
 import { Link } from 'react-router-dom';
 import initState from '../Data/Data.js'
 import WaveSurfer from 'wavesurfer.js';
-import WaveformPlaylist from 'waveform-playlist';
 import styled from 'styled-components';
 import { WaveformContianer, Wave, PlayButton } from './elements-waveform.js';
 import React, { useEffect, useState, Component } from 'react'
@@ -17,53 +16,42 @@ class Showproduct extends Component {
      playing: false,
    };
 
-componentDidMount(){
-  const product = initState.items.find(({ _id }) => _id === this.props.match.params.id)
+   componentDidMount() {
+     var ws = [];
+     const product = initState.items.find(({ _id }) => _id === this.props.match.params.id)
+     const track = document.querySelector('#track');
 
-  this.playlist = WaveformPlaylist({
-    samplesPerPixel: 3000,
-    mono: true,
-    waveHeight: 70,
-    container: document.getElementById("track"),
-    state: "cursor",
-    colors: {
-      waveOutlineColor: "#E0EFF1",
-      timeColor: "grey",
-      fadeColor: "black"
-    },
-    controls: {
-      show: true,
-      width: 200
-    },
-    zoomLevels: [500, 1000, 3000, 5000]
-  });
+     this.waveform = WaveSurfer.create({
+       barWidth: 3,
+       cursorWidth: 1,
+       container: '#waveform',
+       backend: 'WebAudio',
+       height: 80,
+       progressColor: '#2D5BFF',
+       responsive: true,
+       waveColor: '#EFEFEF',
+       cursorColor: 'transparent',
+     });
 
-  this.playlist
-  .load([
-    {
-      src: "http://localhost:3000/Audio/Como_Aquellos_Años.wav",
-      name: "Vocals",
-      gain: 0.5
-    },
 
-  ]
-)
-}
-     /*this.waveform.load(product.audio.map(item => { return(`http://localhost:3000/Audio/${item.audio}.wav`)}));*/
+     this.waveform.load(product.audio.map(item => { return(`http://localhost:3000/Audio/${item.audio}.wav`)}));
+   };
+
+
   handleClick = (_id) => {
           this.props.addToCart(_id);
         }
 
+
         handlePlay = () => {
           this.setState({ playing: !this.state.playing });
-          this.playlist.play();
-         };
+           this.waveform.playPause();
+ };
+
 
  render(){
-
    const url = 'http://localhost:3000/Audio/Como Aquellos Años.wav'
    const product = initState.items.find(({ _id }) => _id === this.props.match.params.id)
-console.log(product.audio)
 
     return (
       <div>
@@ -77,14 +65,15 @@ console.log(product.audio)
                           <p>{product.author}</p>
                           <p>{product.genre}</p>
                           <p>{product.desc}</p>
-                             <p><b>Price: {product.price}€</b></p>
-                             {product.audio.map(item=>{ return(<WaveformContianer >
-                               <PlayButton onClick={()=>{this.handlePlay()}} >
-                               {!this.state.playing ? 'Play' : 'Pause'}
-                               </PlayButton>
-                               <Wave id="track" />
-                               <audio  src={`http://localhost:3000/Audio/${item.audio}`}/>
-                             </WaveformContianer>)})}
+                          <p><b>Price: {product.price}€</b></p>
+
+                          {product.audio.map(item=>{ return(<WaveformContianer>
+                            <PlayButton onClick={()=>{this.handlePlay()}}>
+                            {!this.state.playing ? 'Play' : 'Pause'}
+                            </PlayButton>
+                            <Wave id="waveform" />
+                            <audio id="track" src={`http://localhost:3000/Audio/${item.audio}`}/>
+                          </WaveformContianer>)})}
                           </div>
 
               </div>
