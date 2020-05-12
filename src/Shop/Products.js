@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import {Form} from 'react-bootstrap';
 import { addToCart } from '../actions/cartActions'
-import Showproduct from './Showproduct.js'
+import Showproduct from '../Showproduct/Showproduct.js'
 import React, { useState, useEffect } from 'react';
 
 

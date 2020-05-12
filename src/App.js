@@ -5,11 +5,11 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import fire from './config/fire.js';
-import Footer from './Footer/Footer.js';
+
 import Home from './Home/Home.js';
-import Navbar from './Nav/Navbar';
+import Navigatorbar from './Nav/Navbar';
 import Shop from './Shop/Shop.js';
-import Showproduct from './Shop/Showproduct.js';
+import Showproduct from './Showproduct/Showproduct.js';
 import Cart from './Shop/Cart.js';
 import Login from './Login/login.js';
 import Portfolio from './Portfolio/Portfolio.js';
@@ -31,7 +31,7 @@ class App extends Component {
 
  authListener() {
    fire.auth().onAuthStateChanged((user) => {
-     
+
      if (user) {
        this.setState({ user });
        localStorage.setItem('user', user.uid);
@@ -47,7 +47,7 @@ class App extends Component {
     <div>
     <BrowserRouter>
     <div className="App">
-      <Navbar user={this.state.user} />
+      <Navigatorbar user={this.state.user} />
         <Switch>
             <Route path="/shop" component= {Shop}></Route>
             <Route path="/Showproduct/:id" render={(props) => <Showproduct {...props} />}/>

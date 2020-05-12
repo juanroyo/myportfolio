@@ -16,9 +16,10 @@ code {
     justify-content: space-between;
     flex-wrap: wrap
 }
-.material-icons{
-    font-size: 2.4em;
+.material-icons.md-dark{
+    font-size: 2em;
     cursor: pointer;
+    color: rgb(0, 0, 0);
 }
 .card{
     width: 300px;
