@@ -30,28 +30,20 @@ class Cart extends Component{
                 this.props.items.map(item=>{
 
                     return(
-                        <li className="collection-item avatar" key={item._id}>
-                                    <div className="item-img">
-                                        <img src={`http://localhost:3000/Images/${item.img}`} alt={item.img} className=""/>
-                                    </div>
 
-                                    <div className="item-desc">
-                                        <span className="title">{item.title}</span>
-                                        <p>{item.desc}</p>
-                                        <p><b>Price: {item.price}$</b></p>
-                                        <p>
-                                            <b>Quantity: {item.quantity}</b>
-                                        </p>
-                                        {/*<div className="add-remove">
-                                            <Link to="/cart"><i className="material-icons">arrow_drop_up</i></Link>
-                                            <Link to="/cart"><i className="material-icons">arrow_drop_down</i></Link>
-                                        </div>*/}
-
-                                        <button className="waves-effect waves-light btn pink remove" onClick={()=>{this.handleRemove(item._id)}}>Remove</button>
-
-                                    </div>
-
-                               </li>
+                      <tr>
+                         <th scope="row" class="border-0">
+                           <div class="p-2" >
+                             <img src={`http://localhost:3000/Images/${item.img}`} alt={item.img} width="70" class="img-fluid rounded shadow-sm"/>
+                             <div class="ml-3 d-inline-block align-middle">
+                               <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">{item.title}</a></h5><span class="text-muted font-weight-normal font-italic d-block">{item.genre}</span>
+                             </div>
+                           </div>
+                         </th>
+                         <td class="border-0 align-middle"><strong>{item.price}</strong></td>
+                         <td class="border-0 align-middle"><strong>{item.quantity}</strong></td>
+                         <td class="border-0 align-middle"><button className="waves-effect waves-light btn pink remove" onClick={()=>{this.handleRemove(item._id)}}>Remove</button></td>
+                       </tr>
                     )
                 })
             ):
@@ -60,16 +52,40 @@ class Cart extends Component{
                 <p>Nothing.</p>
              )
        return(
-            <div className="container">
-                <div className="cart">
-                    <h5>You have ordered:</h5>
-                    <ul className="collection">
-                        {addedItems}
-                    </ul>
-                </div>
+         <div class="pb-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
 
-                <Recipe user={user} />
-                
+               <div class="table-responsive">
+               <table class="table">
+                 <thead>
+                   <tr>
+                     <th scope="col" class="border-0 bg-light">
+                       <div class="p-2 px-3 text-uppercase">Product</div>
+                     </th>
+                     <th scope="col" class="border-0 bg-light">
+                       <div class="py-2 text-uppercase">Price</div>
+                     </th>
+                     <th scope="col" class="border-0 bg-light">
+                       <div class="py-2 text-uppercase">Quantity</div>
+                     </th>
+                     <th scope="col" class="border-0 bg-light">
+                       <div class="py-2 text-uppercase">Remove</div>
+                     </th>
+                   </tr>
+                 </thead>
+                   <tbody>
+                              {addedItems}
+
+      </tbody>
+
+                  </table>
+            </div>
+            </div>
+            </div>
+            </div>
+          <Recipe user={user} />
             </div>
        )
     }

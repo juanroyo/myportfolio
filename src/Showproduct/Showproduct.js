@@ -31,25 +31,39 @@ class Showproduct extends Component {
     return (
       <div class="super">
       <div class="containerproduct">
-               <Card style={{ width: '60%', height: '500px', margintop: '100px' }}>
-                 <Card.Img variant="top" src={`http://localhost:3000/Images/${product.img}`} style={{ width: '200px', height: '200px' }} />
-                 <Card.Body>
-                 <Card.Title>{product.title}</Card.Title>
-                 <Card.Text>
-                {product.desc}
-                 </Card.Text>
-                 <Card.Text>
 
-                 </Card.Text>
-                 <audio controls>
-                   <source src="http://localhost:3000/Audio/Como_Aquellos_Años.wav" type="audio/ogg"/>
-                   <source src="horse.mp3" type="audio/mpeg"/>
-                   Your browser does not support the audio tag.
-                 </audio>
-                 <p><b>Price: {product.price}€</b></p>
-                  <Button variant="primary" onClick={()=>{this.handleClick(product._id)}}>Add</Button>
-                 </Card.Body>
-           </Card>
+               <div  class="cardmargin">
+               <div class= "row">
+               <a href="javascript:history.back()" class="back"> Go Back </a>
+               <h1 class="titleproduct">{product.title}</h1>
+                <div class="col">
+
+                 <img class="shadow" src={`http://localhost:3000/Images/${product.img}`} style={{ width: 'auto', height: 'auto'}}/>
+                   </div>
+                       <div class="col" class="body" >
+                     <Card.Body style={{ height: '100%'}}>
+                     <Card.Title ><h2 class='cardtitle'>{product.price}€</h2></Card.Title>
+                     <Card.Text>
+                    {product.desc}<br/>{product.author}
+                     </Card.Text>
+                     <hr/>
+
+                     <audio controls>
+                       <source src="http://localhost:3000/Audio/Como_Aquellos_Años.wav" type="audio/ogg"/>
+                       <source src="horse.mp3" type="audio/mpeg"/>
+                       Your browser does not support the audio tag.
+                     </audio>
+                     <div class="enlinea">
+
+
+                      <Button variant="primary" onClick={()=>{this.handleClick(product._id)}}>Add</Button>
+                      </div>
+                     </Card.Body>
+                     </div>
+                     </div>
+           </div>
+
+
            </div>
 
       </div>

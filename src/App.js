@@ -51,9 +51,7 @@ class App extends Component {
         <Switch>
             <Route path="/shop" component= {Shop}></Route>
             <Route path="/Showproduct/:id" render={(props) => <Showproduct {...props} />}/>
-            <Route path="/portfolio">
-              <Portfolio />
-            </Route>
+            
             <Route path="/contact">
               <Contact />
             </Route>

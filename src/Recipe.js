@@ -78,22 +78,47 @@ setTimeout(function(){ this.setState({status: ''}); }, 3000);
         .catch(error => console.log(error))
     }
         return(
-            <div className="container">
-                <div className="collection">
-                    <li className="collection-item">
 
-                        </li>
-                        <li className="collection-item"><b>Total: {this.props.total} $</b></li>
-                    </div>
-                    <div className="checkout">
-                      <button className="waves-effect waves-light btn">
-                      {notLogged()}
-                       </button>
-                       {this.handleAlert()}
+           <div class="container">
+             <div class="row">
 
-                    </div>
-                    <div>{this.state.message}</div>
-                 </div>
+              <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+                <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary </div>
+              {/*<div className="container">
+                  <div className="collection">
+                      <li className="collection-item">
+
+                          </li>
+                          <li className="collection-item"><b>Total: {this.props.total} $</b></li>
+                      </div>
+                      <div className="checkout">
+                        <button className="waves-effect waves-light btn">
+                        {notLogged()}
+                         </button>
+                         {this.handleAlert()}
+
+                      </div>
+                      <div>{this.state.message}</div>
+
+                   </div>*/}
+                <ul class="list-unstyled mb-4">
+
+
+                  <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
+                    <h5 class="font-weight-bold">€{this.props.total}</h5>
+                  </li>
+                </ul>
+                <button className="waves-effect waves-light btn"> {notLogged()}</button>
+                  <div>{this.state.message}</div>
+              </div>
+            </div>
+          </div>
+          
+
+
+
+
+
         )
     }
 }

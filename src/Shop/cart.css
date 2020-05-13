@@ -1,0 +1,5 @@
+
+.border-0 div {
+  display: flex;
+  justify-content: space-around;
+}

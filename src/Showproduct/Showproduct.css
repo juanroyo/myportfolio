@@ -1,7 +1,5 @@
 body {
-  background: rgb(238,174,202);
-background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
-height: 100%;
+
 }
 html {
   background-color: none;
@@ -13,14 +11,17 @@ audio {
   border-radius: 90px;
   transform: scale(1.05);
 }
+
 .super {
   display: flex;
   justify-content: center;
 }
 .containerproduct {
+  margin-top: 50px;
   display: flex;
   width: 75%;
   justify-content: center;
+
 }
 .containerproduct img {
   align-content: left;
@@ -38,8 +39,59 @@ h3 {
   font-size: 24px;
 font-weight: 300;
 }
+.cardtitle{
+  font-size: 24px;
+  text-transform: none;
+  margin: 0px 0px 0px 0px;
+  font-weight: 400;
+  color: #000000;
+}
 .content {
   display: block;
   width: 50%;
   justify-self: left;
+}
+.space {
+  height: 50px;
+}
+.body {
+  margin-top: 50px;
+  margin-right: 50px;
+}
+.cardmargin {
+  display: flex;
+  margin-top: 50px;
+  width: 70%;
+  padding-bottom: 50px;
+  height: auto;
+  box-shadow: 2px 2px 5px;
+  background-color: white;
+  border-radius: 1%;
+}
+.enlinea {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.enlinea p {
+margin-top: 20px;
+}
+.enlinea Button {
+  margin-top: 10px;
+height: 40px;
+}
+.shadow {
+  box-shadow: 2px 2px 5px;
+  border-radius: 3%;
+  margin-top: 20px;
+}
+.titleproduct {
+  font-size: 64px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+ .back {
+  height:20px;
+  margin-left: 20px;
+
 }

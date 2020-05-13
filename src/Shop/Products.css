@@ -1,0 +1,50 @@
+.carousel {
+  width:1030px;
+  height:500px;
+  margin: auto;
+}
+.centerme{
+  margin-left: 20px;
+  margin-bottom: 50px;
+  margin-top: 20px;
+  box-shadow: 3px 3px 6px #000000;
+}
+.prodcard {
+  box-shadow: 3px 3px 6px #000000;
+}
+.prodcard Button {
+  margin-left: 0px;
+}
+.form{
+  margin-top: 20px;
+}
+@media (max-width: 900px) {
+    .carousel {
+      width:auto;
+      height:auto;
+    }
+}
+.title {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.prices {
+  display: flex;
+  justify-content: space-around;
+}
+.prices p {
+  margin-top:  20px;
+  width: 40px;
+  height: 40px;
+  padding-top: 10px;
+}
+.prices p {
+  margin: 0px;
+
+}
+div h1 {
+  font-size: 96px;
+  margin: auto;
+  justify-content: center;
+}

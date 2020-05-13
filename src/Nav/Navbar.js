@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import fire from '../config/fire';
 import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap';
 import $ from 'jquery'
+import './Nav.css'
  class Navigatorbar extends Component {
    constructor(props) {
         super(props);
@@ -18,7 +19,7 @@ import $ from 'jquery'
     }
 polla() {
   if (this.props.user != null) {
-    return(<li><button onClick={this.logout}>Logout</button></li>)
+    return(<a class="nav-link" href="#"><button onClick={this.logout}>Logout</button></a>)
   }
 }
 
@@ -26,34 +27,27 @@ polla() {
 const user = this.props.user
 
     return(
-      <div>
-        {/*<Link to="/" className="brand-logo">Shopping</Link>*/}
-            <nav className="nav-wrapper blue-grey lighten-5">
-                <div className="container">
-                <a href="#" class="brand-logo">Logo</a>
+      <div class="shadoww">
 
-                    <ul className="right black-text text-darken-2" >
-                      <li><Link to="/"><span class="black-text text-darken-2">Home</span></Link></li>
-                      <li><Link to="/shop"><span class="black-text text-darken-2">Shop</span></Link></li>
-                      <li><Link to="/portfolio"><span class="black-text text-darken-2">Portfolio</span></Link></li>
-                      <li><Link to="/login"><span class="black-text text-darken-2">Log in</span></Link></li>
-                      <li><Link to="/contact"><span class="black-text text-darken-2">Contact</span></Link></li>
+
+
+
+              <Navbar collapseOnSelect expand="lg" bg="light" variant="light" class="shadow p-3 mb-5 bg-white rounded">
+                  <Navbar.Brand href="">React-Bootstrap</Navbar.Brand>
+                  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                  <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="mr-auto">
+                      <Nav.Link><Link to="/"><span >Home</span></Link></Nav.Link>
+                          <Nav.Link><Link to="/shop"><span >Shop</span></Link></Nav.Link>
                       {this.polla()}
-                      <li><Link to="/cart"><span class="black-text text-darken-2">My cart</span></Link></li>
-                      <li><Link to="/cart"><i className="material-icons md-dark">shopping_cart</i></Link></li>
-                    </ul>
-                </div>
-            </nav>
-            <ul class="sidenav" id="mobile-demo">
-                  <li><Link to="/"><span class="black-text text-darken-2">Home</span></Link></li>
-                  <li><Link to="/shop"><span class="black-text text-darken-2">Shop</span></Link></li>
-                  <li><Link to="/portfolio"><span class="black-text text-darken-2">Portfolio</span></Link></li>
-                  <li><Link to="/login"><span class="black-text text-darken-2">Log in</span></Link></li>
-                  <li><Link to="/contact"><span class="black-text text-darken-2">Contact</span></Link></li>
-                  {this.polla()}
-                  <li><Link to="/cart"><span class="black-text text-darken-2">My cart</span></Link></li>
-              </ul>
-
+                          <Nav.Link> <Link to="/login"><span class="black-text text-darken-2">Log in</span></Link></Nav.Link>
+                          <Nav.Link> <Link to="/contact"><span class="black-text text-darken-2">Contact</span></Link></Nav.Link>
+                    </Nav>
+                    <Nav>
+                <Nav.Link>  <a class="nav-link"><Link to="/cart"><i className="material-icons">shopping_cart</i></Link></a></Nav.Link>
+                    </Nav>
+                  </Navbar.Collapse>
+                </Navbar>
   </div>
 
     )

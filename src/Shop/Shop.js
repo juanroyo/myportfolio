@@ -15,7 +15,7 @@ import Products from './Products.js'
 function Shop (  props, {match} )  {
 
         return(
-            <div className="container">
+            <div >
               <Products/>
             </div>
         )
