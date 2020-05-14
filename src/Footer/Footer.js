@@ -7,10 +7,10 @@ export default class Footer extends Component {
 
 render(){
   return(
-    <div class="stylefooter">
-      <div class="box">
+    <footer class="stylefooter">
+
          <div class="footer-wrapper">
-         <a href="https://www.zylenstudio.com/" id="CONTACT">Contact</a>
+      
          {/*<div class="img-qualities">
          <a href="www.youtube.com" target="_blank"> <img src="./Imagenes/soundcloud-logo3.png" alt=""/></a>
          <a href="www.youtube.com" target="_blank"> <img src="./Imagenes/instagram-logo.png" alt=""/></a>
@@ -21,9 +21,9 @@ render(){
 
          <div class="Copyright"><h6>© Copyright ZylenStudio 2019. All Rights Reserved.</h6></div>
       </div>
-  <p>This is some text within a card body.</p>
-</div>
-</div>
+
+
+</footer>
     );
   }
 }

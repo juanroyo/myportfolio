@@ -29,44 +29,41 @@ class Showproduct extends Component {
    console.log(product.audio)
 
     return (
-      <div class="super">
-      <div class="containerproduct">
-
-               <div  class="cardmargin">
-               <div class= "row">
+        <div class="super">
+        <div  class="cardmargin">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col">
+              <div class="col-sm-2">
                <a href="javascript:history.back()" class="back"> Go Back </a>
-               <h1 class="titleproduct">{product.title}</h1>
-                <div class="col">
+               </div>
+                 <h1 class="titleproduct">{product.title}</h1>
+                 <hr/>
 
-                 <img class="shadow" src={`http://localhost:3000/Images/${product.img}`} style={{ width: 'auto', height: 'auto'}}/>
-                   </div>
-                       <div class="col" class="body" >
-                     <Card.Body style={{ height: '100%'}}>
-                     <Card.Title ><h2 class='cardtitle'>{product.price}€</h2></Card.Title>
-                     <Card.Text>
-                    {product.desc}<br/>{product.author}
-                     </Card.Text>
-                     <hr/>
+              </div>
 
-                     <audio controls>
-                       <source src="http://localhost:3000/Audio/Como_Aquellos_Años.wav" type="audio/ogg"/>
-                       <source src="horse.mp3" type="audio/mpeg"/>
-                       Your browser does not support the audio tag.
-                     </audio>
-                     <div class="enlinea">
+            </div>
+            <div class="row">
+              <div class="col-xs-6">
+              <img  class="img-fluid" class="shadow" alt="Responsive image" src={`http://localhost:3000/Images/${product.img}`} />
+              </div>
+              <div class="col-xs-6">
+              <div class="padding">
+              <h2 class='cardtitle'>{product.price}€</h2>
+              <p>{product.desc}</p><br/><p>{product.author}</p>
+              <audio controls>
+                <source src="http://localhost:3000/Audio/Como_Aquellos_Años.wav" type="audio/ogg"/>
+                <source src="horse.mp3" type="audio/mpeg"/>
+                Your browser does not support the audio tag.
+              </audio><br/>
+              <Button variant="primary" onClick={()=>{this.handleClick(product._id)}}>Add</Button>
+              </div>
+              </div>
+            </div>
+          </div>
+          </div>
 
-
-                      <Button variant="primary" onClick={()=>{this.handleClick(product._id)}}>Add</Button>
-                      </div>
-                     </Card.Body>
-                     </div>
-                     </div>
-           </div>
-
-
-           </div>
-
-      </div>
+        </div>
 
 
 

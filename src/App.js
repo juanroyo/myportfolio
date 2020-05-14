@@ -14,6 +14,7 @@ import Cart from './Shop/Cart.js';
 import Login from './Login/login.js';
 import Portfolio from './Portfolio/Portfolio.js';
 import Contact from './Contact/Contact.js';
+import Footer from './Footer/Footer.js';
 
 
 class App extends Component {
@@ -51,7 +52,7 @@ class App extends Component {
         <Switch>
             <Route path="/shop" component= {Shop}></Route>
             <Route path="/Showproduct/:id" render={(props) => <Showproduct {...props} />}/>
-            
+
             <Route path="/contact">
               <Contact />
             </Route>
@@ -67,6 +68,7 @@ class App extends Component {
           </Switch>
         </div>
       </BrowserRouter>
+      <Footer/>
 </div>
   );
 }

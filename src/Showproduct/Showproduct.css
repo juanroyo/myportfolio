@@ -15,22 +15,10 @@ audio {
 .super {
   display: flex;
   justify-content: center;
+  padding: 25px;
 }
-.containerproduct {
-  margin-top: 50px;
-  display: flex;
-  width: 75%;
-  justify-content: center;
 
-}
-.containerproduct img {
-  align-content: left;
 
-}
-.containerproduct Card {
-  width: 75%;
-
-}
 h2 {
   font-size: 24px;
 font-weight: 300;
@@ -46,52 +34,35 @@ font-weight: 300;
   font-weight: 400;
   color: #000000;
 }
-.content {
-  display: block;
-  width: 50%;
-  justify-self: left;
-}
-.space {
-  height: 50px;
-}
-.body {
-  margin-top: 50px;
-  margin-right: 50px;
-}
+
+
+
 .cardmargin {
   display: flex;
-  margin-top: 50px;
-  width: 70%;
-  padding-bottom: 50px;
+
+  padding: 30px;
   height: auto;
   box-shadow: 2px 2px 5px;
-  background-color: white;
+  background-color: #ebebeb;
   border-radius: 1%;
+  justify-content: center;
 }
-.enlinea {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-}
-.enlinea p {
-margin-top: 20px;
-}
-.enlinea Button {
-  margin-top: 10px;
-height: 40px;
-}
+
+
 .shadow {
   box-shadow: 2px 2px 5px;
   border-radius: 3%;
-  margin-top: 20px;
 }
 .titleproduct {
   font-size: 64px;
-  margin-left: 10px;
-  margin-right: 10px;
+  width:auto;
+
 }
  .back {
   height:20px;
   margin-left: 20px;
 
+}
+.padding {
+  padding: 20px;
 }

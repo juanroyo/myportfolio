@@ -35,51 +35,52 @@ const handleClick = (_id) => {
 
         return(
             <div class="container-lg" >
+            <div class='row'>
             <h1>Shop</h1>
+            </div>
+            <div >
+            <Carousel activeIndex={index} onSelect={handleSelect} class="centerme">
+              <Carousel.Item>
+                <img width={900} height={500}
+                  className="d-block w-100"
+                  src="http://localhost:3000/Images/Album4.png"
+                  alt="First slide"
+                />
+                <Carousel.Caption>
+                  <h3>First slide label</h3>
+                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500}
+                  className="d-block w-100"
+                  src="http://localhost:3000/Images/Album4.png"
+                  alt="Second slide"
+                />
 
+                <Carousel.Caption>
+                  <h3>Second slide label</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500}
+                  className="d-block w-100"
+                  src="http://localhost:3000/Images/Album4.png"
+                  alt="Third slide"
+                />
 
+                <Carousel.Caption>
+                  <h3>Third slide label</h3>
+                  <p>
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                  </p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+            </div>
                 <div className="box">
-                  <div class="col-lg-9" class="centerme">
-                  <Carousel activeIndex={index} onSelect={handleSelect}>
-                    <Carousel.Item>
-                      <img width={900} height={500}
-                        className="d-block w-100"
-                        src="http://localhost:3000/Images/Album4.png"
-                        alt="First slide"
-                      />
-                      <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                      </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                      <img width={900} height={500}
-                        className="d-block w-100"
-                        src="http://localhost:3000/Images/Album4.png"
-                        alt="Second slide"
-                      />
 
-                      <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                      </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                      <img width={900} height={500}
-                        className="d-block w-100"
-                        src="http://localhost:3000/Images/Album4.png"
-                        alt="Third slide"
-                      />
-
-                      <Carousel.Caption>
-                        <h3>Third slide label</h3>
-                        <p>
-                          Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                        </p>
-                      </Carousel.Caption>
-                    </Carousel.Item>
-                  </Carousel>
-                </div>
                 <div class="title">
                 <h3 className="center">Our items</h3>
                 <div class="form">
@@ -100,9 +101,9 @@ const handleClick = (_id) => {
 
                                     <div class="col-lg-4 col-md-6 mb-4" key={item._id}>
 
-                                      <div class="card h-100" >
+                                      <div class="card bg-light h-100" >
                                       <div class="prodcard">
-                                       <Link to={`/Showproduct/${item._id}`}><img src={`http://localhost:3000/Images/${item.img}`}/></Link>
+                                       <Link to={`/Showproduct/${item._id}`}><img class="img-fluid" src={`http://localhost:3000/Images/${item.img}`} /></Link>
                                         <div class="card-body">
                                           <h4 class="card-title">
                                             {item.title}

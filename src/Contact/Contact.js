@@ -38,37 +38,37 @@ export default class Contact extends Component {
 render(){
   const { email, textarea } = this.state
   return(
-    <div class="justifier">
-    <div class='stylecontact'>
-      <div class="boxstyle">
-    <Form onSubmit={this.submitHandler}>
-      <h1>Contact</h1>
-    <Form.Group controlId="formBasicEmail">
-      <Form.Label for="email">Email address</Form.Label>
-      <Form.Control type="email" placeholder="Enter email"
-          name="email"
-          value={email}
-          onChange={this.changeHandler}/>
-      <Form.Text className="text-muted">
-        We'll never share your email with anyone else.
-      </Form.Text>
-    </Form.Group>
-    <Form.Group controlId="exampleForm.ControlTextarea1">
-    <Form.Label for="textarea">Example textarea</Form.Label>
-    <Form.Control as="textarea" rows="3" type="text"
-    name="textarea"
-    value={textarea}
-    onChange={this.changeHandler} />
-    </Form.Group>
-    <Button variant="primary" type="submit">
-      Submit
-    </Button>
-  </Form>
-  <div>{this.state.successfullMessage}</div>
-  <div>{this.state.errorMessage}</div>
-   </div>
-  </div>
-  </div>
+              <div class="justifier">
+                  <div class='stylecontact'>
+                      <div class="boxstyle">
+                            <Form onSubmit={this.submitHandler}>
+                              <h1>Contact</h1>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Label for="email">Email address</Form.Label>
+                                    <Form.Control type="email" placeholder="Enter email"
+                                        name="email"
+                                        value={email}
+                                        onChange={this.changeHandler}/>
+                                    <Form.Text className="text-muted">
+                                      We'll never share your email with anyone else.
+                                    </Form.Text>
+                                  </Form.Group>
+                                  <Form.Group controlId="exampleForm.ControlTextarea1">
+                                  <Form.Label for="textarea">Example textarea</Form.Label>
+                                  <Form.Control as="textarea" rows="3" type="text"
+                                  name="textarea"
+                                  value={textarea}
+                                  onChange={this.changeHandler} />
+                                  </Form.Group>
+                                <Button variant="primary" type="submit">
+                                  Submit
+                                </Button>
+                          </Form>
+                        <div>{this.state.successfullMessage}</div>
+                      <div>{this.state.errorMessage}</div>
+                   </div>
+                </div>
+            </div>
     );
   }
 }

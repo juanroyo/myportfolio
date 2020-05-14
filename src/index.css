@@ -17,14 +17,15 @@ code {
 .box{
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    margin-bottom: 100px;
 }
 
 
 .card .card-image .card-title{
-    color: black;
-    font-weight: 400
+  background-color: #ebebeb;
 }
 .cart{
     margin-top:40px;
+
 }
