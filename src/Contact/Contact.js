@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Form, Button, Card} from 'react-bootstrap';
+import {Form, Button} from 'react-bootstrap';
 import axios from 'axios';
 import './Contact.css';
 
@@ -24,7 +24,7 @@ export default class Contact extends Component {
     			.post('http://localhost:8080/contact', this.state)
     			.then(response => {
     				console.log(response.status)
-            if (response.status == 200) {
+            if (response.status = 200) {
               this.setState({successfullMessage: "succesfully sent message!", email: '', textarea: '', errorMessage: ''})
             }
 
@@ -72,7 +72,7 @@ render(){
                 </div>
                 </div>
             </div>
-        
+
     );
   }
 }

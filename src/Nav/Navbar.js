@@ -11,13 +11,13 @@ import './Nav.css'
           logged: null,
         }
         this.logout = this.logout.bind(this);
-        this.polla = this.polla.bind(this);
+        this.log = this.log.bind(this);
 
     }
     logout() {
         fire.auth().signOut();
     }
-polla() {
+log() {
   if (this.props.user != null) {
     return(<a class="nav-link" href="#"><button onClick={this.logout}>Logout</button></a>)
   }
@@ -41,7 +41,7 @@ const user = this.props.user
                           <Nav.Link><Link to="/shop"><span >Shop</span></Link></Nav.Link>
                           <Nav.Link> <Link to="/login"><span class="black-text text-darken-2">Log in</span></Link></Nav.Link>
                           <Nav.Link> <Link to="/contact"><span class="black-text text-darken-2">Contact</span></Link></Nav.Link>
-                          {this.polla()}
+                          {this.log()}
                     </Nav>
                     <Nav>
                 <Nav.Link>  <a class="nav-link"><Link to="/cart"><i className="material-icons">shopping_cart</i></Link></a></Nav.Link>

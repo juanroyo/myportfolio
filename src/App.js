@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,7 +12,7 @@ import Shop from './Shop/Shop.js';
 import Showproduct from './Showproduct/Showproduct.js';
 import Cart from './Shop/Cart.js';
 import Login from './Login/login.js';
-import Portfolio from './Portfolio/Portfolio.js';
+
 import Contact from './Contact/Contact.js';
 import Footer from './Footer/Footer.js';
 
