@@ -89,57 +89,94 @@ purchases.map(item=>{return(
 
   return(
 
-    <div class="justifier">
-        <div class='stylecontact'>
-<div class="boxstyle">
-        <Form>
-        <h1>Login/Register</h1>
-       <Form.Group controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control value={this.state.email} onChange={this.handleChange} type="email" name="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-       We'll never share your email with anyone else.
-     </Form.Text>
-       </Form.Group>
-        <Form.Group controlId="formBasicEmail">
-        <Form.Label>Password</Form.Label>
-        <Form.Control value={this.state.password} onChange={this.handleChange} type="password" name="password" placeholder="Password" />
-       </Form.Group>
-        <Button variant="primary" type="submit" onClick={this.login} >Login</Button>
-       <Button variant="primary" type="submit" onClick={this.signup} style={{marginLeft: '25px'}} >Signup</Button>
-
-       </Form>
-</div>
-        <div>{this.error()}</div>
-        <div>{this.state.messagesuccess}</div>
 
 
-        {purchases.filter((item)=>{
+        <div class="container">
+        <div class="row">
+            <div class='col'>
+                <div class="boxstylelogin">
+                          <Form>
+                          <h1>Login/Register</h1>
+                         <Form.Group controlId="formBasicEmail">
+                          <Form.Label>Email address</Form.Label>
+                          <Form.Control value={this.state.email} onChange={this.handleChange} type="email" name="email" placeholder="Enter email" />
+                          <Form.Text className="text-muted">
+                         We'll never share your email with anyone else.
+                       </Form.Text>
+                         </Form.Group>
+                          <Form.Group controlId="formBasicEmail">
+                          <Form.Label>Password</Form.Label>
+                          <Form.Control value={this.state.password} onChange={this.handleChange} type="password" name="password" placeholder="Password" />
+                         </Form.Group>
+                          <Button variant="primary" type="submit" onClick={this.login} >Login</Button>
+                         <Button variant="primary" type="submit" onClick={this.signup} style={{marginLeft: '25px'}} >Signup</Button>
+                         </Form>
+                      <div>{this.error()}</div>
+                  <div>{this.state.messagesuccess}</div>
+              </div>
+         </div>
+         </div>
+         <div class="margin">
+          <div class="row">
+          <div class="col">
+                         {purchases.filter((item)=>{
 
-            if(this.props.user == null ) {
-                return (null)
-            } else if (Object.keys(item).some(key => typeof item[key] === "string" && item[key].toLowerCase().includes(this.props.user.email))){
-                 return item
-            }
-          })
-        .map(item=>{return(<div id={item._id}>
-          <p>{item.email}</p>
-          {item.products.map(item=>{return(
-          <div key={item._id}>
-          <p>{item.title}</p>
-          <img src={`http://localhost:3000/Images/${item.img}`}/>
-          <p>{item.author}</p>
-          <p>{item.genre}</p>
-          <p>{item.price}</p>
-          </div>
-        )})}
+                             if(this.props.user == null ) {
+                                 return (null)
+                             } else if (Object.keys(item).some(key => typeof item[key] === "string" && item[key].toLowerCase().includes(this.props.user.email))){
+                                  return item
+                             }
+                           })
+                         .map(item=>{return(<div class="cardmarginlogin" id={item._id}>
+                         <br/>
+                           {item.products.map(item=>{return(
 
-          <p>{item.total}</p>
-          </div>
-        )})}
+                             <div class="container-fluid" >
 
-</div>
-</div>
+                               <div class="row">
+                                 <div class="col">
+                                 <div class="col-sm-2">
+
+                                  </div>
+                                    <h1 class="titleproduct">{item.title}</h1>
+                                    <hr/>
+
+                                 </div>
+
+                               </div>
+                               <div class="row">
+                                 <div class="col-xs-6">
+                                 <img  class="img-fluid" class="shadow" alt="Responsive image" src={`http://localhost:3000/Images/${item.img}`} />
+                                 </div>
+                                 <div class="col-xs-6">
+                                 <div class="padding">
+                                 <h2 class='cardtitle'>{item.price}€</h2>
+                                 <p>{item.desc}</p><br/><p>{item.author}</p>
+                                 <audio controls>
+                                   <source src="http://localhost:3000/Audio/Como_Aquellos_Años.wav" type="audio/ogg"/>
+                                   <source src="horse.mp3" type="audio/mpeg"/>
+                                   Your browser does not support the audio tag.
+                                 </audio><br/>
+
+                                 </div>
+                                 </div>
+                               </div>
+                             </div>
+
+                         )})}
+
+
+                             <p class="goodwidth">Total: {item.total}</p>
+
+                           </div>
+                         )})}
+                         </div>
+                         </div>
+                     </div>
+                     </div>
+
+
+
 )
 }
 }

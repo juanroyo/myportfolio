@@ -38,8 +38,10 @@ export default class Contact extends Component {
 render(){
   const { email, textarea } = this.state
   return(
-              <div class="justifier">
-                  <div class='stylecontact'>
+
+              <div class="container">
+                  <div class='row'>
+                  <div class='col'>
                       <div class="boxstyle">
                             <Form onSubmit={this.submitHandler}>
                               <h1>Contact</h1>
@@ -68,7 +70,9 @@ render(){
                       <div>{this.state.errorMessage}</div>
                    </div>
                 </div>
+                </div>
             </div>
+        
     );
   }
 }

@@ -1,15 +1,36 @@
-.boxstyle {
+
+
+h1 {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 56px;
+  color: #7a7a7a;
+  width: auto;
+}
+.boxstylelogin {
   background-color: #ebebeb;
    border-radius: 5px;
    padding: 20px;
+   margin-top: 100px;
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-   height: 400px;
+   width: 100%;
+   height: 450px;
+   z-index: 1;
 }
-.contactwrap {
-  height: 700px;
-  width:75%;
-display: flex;
-justify-content: center;
-margin-top:25px;
+.goodwidth {
+  width: 20%;
+}
+.cardmarginlogin {
+  display: flex;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 30px;
+  height: auto;
+  box-shadow: 2px 2px 5px;
+  background-color: #ebebeb;
+  border-radius: 1%;
+  justify-content: center;
+}
+.margin {
+  margin-bottom: 50px;
 }

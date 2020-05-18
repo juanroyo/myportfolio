@@ -33,15 +33,15 @@ const user = this.props.user
 
 
               <Navbar collapseOnSelect expand="lg" bg="light" variant="light" class="shadow p-3 mb-5 bg-white rounded">
-                  <Navbar.Brand href="">React-Bootstrap</Navbar.Brand>
+                  <Navbar.Brand href="">Zylen Studio</Navbar.Brand>
                   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                   <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
                       <Nav.Link><Link to="/"><span >Home</span></Link></Nav.Link>
                           <Nav.Link><Link to="/shop"><span >Shop</span></Link></Nav.Link>
-                      {this.polla()}
                           <Nav.Link> <Link to="/login"><span class="black-text text-darken-2">Log in</span></Link></Nav.Link>
                           <Nav.Link> <Link to="/contact"><span class="black-text text-darken-2">Contact</span></Link></Nav.Link>
+                          {this.polla()}
                     </Nav>
                     <Nav>
                 <Nav.Link>  <a class="nav-link"><Link to="/cart"><i className="material-icons">shopping_cart</i></Link></a></Nav.Link>
