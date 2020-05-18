@@ -9,7 +9,9 @@ audio {
   border-radius: 90px;
   transform: scale(1.05);
 }
-
+.audio {
+  display: block;
+}
 .super {
   display: flex;
   justify-content: center;

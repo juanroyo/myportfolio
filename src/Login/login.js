@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import './register.css'
 import fire from '../config/fire';
 import {Form, Button, Card} from 'react-bootstrap';
-
+import {
+  BrowserRouter as Router,
+  Link,
+  Route // for later
+} from 'react-router-dom';
+import Showproduct from '../Showproduct/Showproduct.js'
 var purchases = []
 
 function initApp() {
@@ -138,7 +143,7 @@ purchases.map(item=>{return(
                                  <div class="col-sm-2">
 
                                   </div>
-                                    <h1 class="titleproduct">{item.title}</h1>
+                                  <Link to={`/Showproduct/${item._id}`}>  <h1 class="titleproduct">{item.title}</h1></Link>
                                     <hr/>
 
                                  </div>
@@ -146,17 +151,14 @@ purchases.map(item=>{return(
                                </div>
                                <div class="row">
                                  <div class="col-xs-6">
+
                                  <img  class="img-fluid" class="shadow" alt="Responsive image" src={`http://localhost:3000/Images/${item.img}`} />
                                  </div>
                                  <div class="col-xs-6">
                                  <div class="padding">
                                  <h2 class='cardtitle'>{item.price}€</h2>
                                  <p>{item.desc}</p><br/><p>{item.author}</p>
-                                 <audio controls>
-                                   <source src="http://localhost:3000/Audio/Como_Aquellos_Años.wav" type="audio/ogg"/>
-                                   <source src="horse.mp3" type="audio/mpeg"/>
-                                   Your browser does not support the audio tag.
-                                 </audio><br/>
+                                 <br/>
 
                                  </div>
                                  </div>
@@ -173,6 +175,10 @@ purchases.map(item=>{return(
                          </div>
                          </div>
                      </div>
+                     <Route
+                      path="/Showproduct/:id"
+                      render={(props) => <Showproduct {...props} />}
+                    />
                      </div>
 
 

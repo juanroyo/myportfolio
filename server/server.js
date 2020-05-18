@@ -211,6 +211,19 @@ app.get('/shop', function(req, res) {
     });
   });
 });
+app.get('/offers', function(req, res) {
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("mydb");
+
+    dbo.collection("Offers").find().toArray(function(err, result) {
+      if (err) throw err;
+
+      res.json(result);
+      db.close();
+    });
+  });
+});
 
 
 app.get('/shop/:id', function(req, res) {

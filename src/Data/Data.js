@@ -3,14 +3,16 @@ const Products = {
 
     ],
 };
+
 function initApp() {
   console.log("initApp");
   //this.GetMovies();
-  GetMoviesFromMongo();
+  getMoviesFromMongo();
+
 }
 
 initApp()
-function GetMoviesFromMongo(){
+function getMoviesFromMongo(){
   console.log("la funcion")
   fetch("http://localhost:8080/shop")
       .then(res => res.json())
@@ -18,4 +20,6 @@ function GetMoviesFromMongo(){
         Products.items = res;
       });
 }
+
+
 export default Products

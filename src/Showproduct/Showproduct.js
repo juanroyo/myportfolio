@@ -51,11 +51,12 @@ class Showproduct extends Component {
               <div class="padding">
               <h2 class='cardtitle'>{product.price}€</h2>
               <p>{product.desc}</p><br/><p>{product.author}</p>
-              <audio controls>
-                <source src="http://localhost:3000/Audio/Como_Aquellos_Años.wav" type="audio/ogg"/>
-                <source src="horse.mp3" type="audio/mpeg"/>
-                Your browser does not support the audio tag.
-              </audio><br/>
+              {product.audio.map(item=>{
+                  return(<div class="audio"><audio controls>
+                    <source src={`http://localhost:3000/Audio/${item.song}`} type="audio/ogg"/>
+
+                  </audio></div>)})}
+              <br/>
               <Button variant="primary" onClick={()=>{this.handleClick(product._id)}}>Add</Button>
               </div>
               </div>

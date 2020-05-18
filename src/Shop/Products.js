@@ -10,6 +10,32 @@ import Showproduct from '../Showproduct/Showproduct.js'
 import React, { useState, useEffect } from 'react';
 import './Products.css'
 
+
+const Offers = {
+  info:[],
+}
+
+function initApp() {
+  console.log("initApp");
+  //this.GetMovies();
+
+  getOffersFromMongo();
+}
+
+initApp()
+
+
+
+function getOffersFromMongo(){
+  console.log("la funcion")
+  fetch("http://localhost:8080/offers")
+      .then(res => res.json())
+      .then(res => {
+        console.log(res)
+        Offers.info = res;
+      });
+}
+
 function Products (  props, {match} )  {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -17,6 +43,7 @@ function Products (  props, {match} )  {
   setSearchTerm(event.target.value);
 };
   useEffect(() => {
+
     const results = props.items.filter(item =>
       Object.keys(item).some(key => typeof item[key] === "string" && item[key].toLowerCase().includes(searchTerm))
     );
@@ -35,48 +62,26 @@ const handleClick = (_id) => {
 
         return(
             <div class="container-lg" >
+
             <div class='row'>
             <h1>Shop</h1>
             </div>
             <div >
             <Carousel activeIndex={index} onSelect={handleSelect} class="centerme">
-              <Carousel.Item>
-                <img width={900} height={500}
-                  className="d-block w-100"
-                  src="http://localhost:3000/Images/Album4.png"
-                  alt="First slide"
-                />
-                <Carousel.Caption>
-                  <h3>First slide label</h3>
-                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item>
-                <img width={900} height={500}
-                  className="d-block w-100"
-                  src="http://localhost:3000/Images/Album4.png"
-                  alt="Second slide"
-                />
+              {Offers.info.map(item=>{
+                  return(<Carousel.Item>
+                                  <img width={900} height={500}
+                                    className="d-block w-100"
+                                    src={`http://localhost:3000/Images/${item.img}`}
+                                    alt="First slide"
+                                  />
+                                  <Carousel.Caption>
+                                    <h3>{item.title}</h3>
+                                    <p>{item.desc}</p>
+                                  </Carousel.Caption>
+                                </Carousel.Item>
+)})}
 
-                <Carousel.Caption>
-                  <h3>Second slide label</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item>
-                <img width={900} height={500}
-                  className="d-block w-100"
-                  src="http://localhost:3000/Images/Album4.png"
-                  alt="Third slide"
-                />
-
-                <Carousel.Caption>
-                  <h3>Third slide label</h3>
-                  <p>
-                    Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
             </Carousel>
             </div>
                 <div className="box">
