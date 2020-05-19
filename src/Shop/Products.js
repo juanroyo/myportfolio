@@ -28,7 +28,7 @@ initApp()
 
 function getOffersFromMongo(){
   console.log("la funcion")
-  fetch("http://localhost:8080/offers")
+  fetch("https://ancient-oasis-38770.herokuapp.com/offers")
       .then(res => res.json())
       .then(res => {
 

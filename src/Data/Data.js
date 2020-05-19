@@ -13,7 +13,7 @@ function initApp() {
 initApp()
 function getMoviesFromMongo(){
 
-  fetch("https://git.heroku.com/polar-meadow-31783.git/shop")
+  fetch("https://ancient-oasis-38770.herokuapp.com/shop")
       .then(res => res.json())
       .then(res => {
         Products.items = res;

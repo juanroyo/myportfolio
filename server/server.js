@@ -2,7 +2,7 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
-var PORT = PROCESS.ENV.port || 5000;
+//var PORT = process.ENV.port || 5000;
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
 const emailp = process.env.EMAILP;
@@ -25,7 +25,7 @@ const methodOverride = require('method-override')
 const api = express();
 const MongoClient = require('mongodb').MongoClient;
 const router = express.Router();
-var url = "mongodb://localhost:27017/";
+//var url = "mongodb://localhost:27017/";
 app.set('db', require('./models.js'));
 
 
@@ -34,7 +34,22 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(cors());
 
+const url = "mongodb+srv://juanar:KELi1aO0zTS5pF1v@cluster0-axx5n.mongodb.net/test?retryWrites=true&w=majority";
+var client = new MongoClient((url), { useUnifiedTopology: true });
+const dbName = "test";
 
+async function run() {
+    try {
+        await client.connect();
+        console.log("Connected correctly to server");
+
+    } catch (err) {
+        console.log(err.stack);
+    }
+    finally {
+        await client.close();
+    }
+}
 
 
 //-------------CART----------------
@@ -121,33 +136,7 @@ app.post("/cart", (req, res) => {
      .catch(err => console.log(err))
 });
 
-app.get('/cart', function(req, res) {
-  MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("mydb");
-    dbo.collection("Albums").find().toArray(function(err, result) {
-      if (err) throw err;
-      console.log(result)
-      res.json(result);
-      db.close();
-    });
-  });
-});
 
-
-app.get('/cart/:id', function(req, res) {
-  MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("mydb");
-    var albumid = req.params._id;
-    dbo.collection("Albums").find(albumid).toArray(function(err, result) {
-      if (err) throw err;
-      console.log(result)
-      res.json(result);
-      db.close();
-    });
-  });
-});
 
 //--------CONTACT POST-------------
 app.post('/contact', function(req, res) {
@@ -199,51 +188,49 @@ app.post('/contact', function(req, res) {
 });
 
 //-------------SHOP-----------------
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
 app.get('/shop', function(req, res) {
-  MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
+
     var dbo = db.db("mydb");
 
     dbo.collection("Albums").find().toArray(function(err, result) {
       if (err) throw err;
 
       res.json(result);
-      db.close();
+
     });
-  });
+
 });
 app.get('/offers', function(req, res) {
-  MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
+
     var dbo = db.db("mydb");
 
     dbo.collection("Offers").find().toArray(function(err, result) {
       if (err) throw err;
 
       res.json(result);
-      db.close();
+
     });
-  });
+
 });
 
 
 app.get('/shop/:id', function(req, res) {
-  MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
+
     var dbo = db.db("mydb");
 
     dbo.collection("Albums").find().toArray(function(err, result) {
       if (err) throw err;
       console.log(result)
       res.json(result);
-      db.close();
+
     });
-  });
+
 });
 
 app.get('/login', function(req, res) {
-  MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
+
     var dbo = db.db("mydb");
 
     dbo.collection("Payments").find({}, { projection: { _id: 1, email: 1, products: 1,  total: 1 } }).toArray(function(err, result) {
@@ -257,22 +244,8 @@ app.get('/login', function(req, res) {
 
 
 app.use(router);
-const url = "mongodb+srv://juanar:KELi1aO0zTS5pF1v@cluster0-axx5n.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(url);
-const dbName = "test";
 
-async function run() {
-    try {
-        await client.connect();
-        console.log("Connected correctly to server");
 
-    } catch (err) {
-        console.log(err.stack);
-    }
-    finally {
-        await client.close();
-    }
-}
-app.listen(PORT, function(){
+app.listen(8080, function(){
 console.log('Back is running')
 });
