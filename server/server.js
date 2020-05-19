@@ -2,6 +2,7 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
+var PORT = PROCESS.ENV.port || 5000;
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
 const emailp = process.env.EMAILP;
@@ -21,10 +22,10 @@ const cors = require("cors")
 const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
-
+const api = express();
 const MongoClient = require('mongodb').MongoClient;
 const router = express.Router();
-//var url = "mongodb://localhost:27017/";
+var url = "mongodb://localhost:27017/";
 app.set('db', require('./models.js'));
 
 
@@ -272,5 +273,6 @@ async function run() {
         await client.close();
     }
 }
-
-run().catch(console.dir);
+app.listen(PORT, function(){
+console.log('Back is running')
+});
