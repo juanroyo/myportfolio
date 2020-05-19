@@ -21,10 +21,10 @@ const cors = require("cors")
 const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
-const api = express();
+
 const MongoClient = require('mongodb').MongoClient;
 const router = express.Router();
-var url = "mongodb://localhost:27017/";
+//var url = "mongodb://localhost:27017/";
 app.set('db', require('./models.js'));
 
 
@@ -256,7 +256,21 @@ app.get('/login', function(req, res) {
 
 
 app.use(router);
+const url = "mongodb+srv://juanar:KELi1aO0zTS5pF1v@cluster0-axx5n.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(url);
+const dbName = "test";
 
-app.listen(8080, function(){
-console.log('Back is running')
-});
+async function run() {
+    try {
+        await client.connect();
+        console.log("Connected correctly to server");
+
+    } catch (err) {
+        console.log(err.stack);
+    }
+    finally {
+        await client.close();
+    }
+}
+
+run().catch(console.dir);

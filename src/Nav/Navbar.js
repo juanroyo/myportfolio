@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import fire from '../config/fire';
-import {Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap';
-import $ from 'jquery'
+import {Navbar, Nav} from 'react-bootstrap';
+
 import './Nav.css'
  class Navigatorbar extends Component {
    constructor(props) {
@@ -19,12 +19,12 @@ import './Nav.css'
     }
 log() {
   if (this.props.user != null) {
-    return(<a class="nav-link" href="#"><button onClick={this.logout}>Logout</button></a>)
+    return(<a class="nav-link"><button onClick={this.logout}>Logout</button></a>)
   }
 }
 
    render(props){
-const user = this.props.user
+
 
     return(
       <div class="shadoww">

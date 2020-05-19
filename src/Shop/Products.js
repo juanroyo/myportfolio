@@ -31,7 +31,7 @@ function getOffersFromMongo(){
   fetch("http://localhost:8080/offers")
       .then(res => res.json())
       .then(res => {
-        console.log(res)
+
         Offers.info = res;
       });
 }
@@ -72,7 +72,7 @@ const handleClick = (_id) => {
                   return(<Carousel.Item>
                                   <img width={900} height={500}
                                     className="d-block w-100"
-                                    src={`http://localhost:3000/Images/${item.img}`}
+                                    src={`https://zylenstudio.herokuapp.com/${item.img}`}
                                     alt="First slide"
                                   />
                                   <Carousel.Caption>
@@ -108,7 +108,7 @@ const handleClick = (_id) => {
 
                                       <div class="card bg-light h-100" >
                                       <div class="prodcard">
-                                       <Link to={`/Showproduct/${item._id}`}><img class="img-fluid" src={`http://localhost:3000/Images/${item.img}`} /></Link>
+                                       <Link to={`/Showproduct/${item._id}`}><img class="img-fluid" alt="product pic" src={`https://zylenstudio.herokuapp.com/${item.img}`} /></Link>
                                         <div class="card-body">
                                           <h4 class="card-title">
                                             {item.title}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './register.css'
 import fire from '../config/fire';
-import {Form, Button, Card} from 'react-bootstrap';
+import {Form, Button} from 'react-bootstrap';
 import {
   BrowserRouter as Router,
   Link,
@@ -86,11 +86,7 @@ error(){
 
   render() {
 
-var products = []
 
-purchases.map(item=>{return(
-  products = item.products
-)})
 
   return(
 

@@ -21,7 +21,7 @@ export default class Contact extends Component {
     		e.preventDefault()
     		console.log(this.state)
     		axios
-    			.post('http://localhost:8080/contact', this.state)
+    			.post('https://git.heroku.com/polar-meadow-31783.git/contact', this.state)
     			.then(response => {
     				console.log(response.status)
             if (response.status = 200) {

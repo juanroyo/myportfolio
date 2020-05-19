@@ -5,16 +5,15 @@ const Products = {
 };
 
 function initApp() {
-  console.log("initApp");
-  //this.GetMovies();
+
   getMoviesFromMongo();
 
 }
 
 initApp()
 function getMoviesFromMongo(){
-  console.log("la funcion")
-  fetch("http://localhost:8080/shop")
+
+  fetch("https://git.heroku.com/polar-meadow-31783.git/shop")
       .then(res => res.json())
       .then(res => {
         Products.items = res;

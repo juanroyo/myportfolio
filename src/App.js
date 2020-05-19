@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
@@ -60,7 +58,7 @@ auth.onAuthStateChanged((user) => {
     user.getIdTokenResult().then((idTokenResult) => {
       // Make sure all the times are in milliseconds!
       const authTime = idTokenResult.claims.auth_time * 10000;
-      const sessionDuration =  3600000 * 2;
+      const sessionDuration =  1000 * 60 * 60 * 24 * 30;
       const millisecondsUntilExpiration = sessionDuration - (Date.now() - authTime);
       sessionTimeout = setTimeout(() => auth.signOut(), millisecondsUntilExpiration);
     });

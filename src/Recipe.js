@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import StripeCheckout from "react-stripe-checkout";
 import { onClear } from './actions/cartActions'
-import Alert from 'react-bootstrap/Alert'
-import setShow from 'react-bootstrap/Alert'
+
 
 class Recipe extends Component{
   constructor(props) {
@@ -47,7 +46,7 @@ setTimeout(function(){ this.setState({status: ''}); }, 3000);
              Compra {this.props.total} €
            </StripeCheckout>)
         } else {
-          return(<a href="http://localhost:3000/login">you need to be logged in first</a>)
+          return(<a href="https://zylenstudio.herokuapp.com/login">you need to be logged in first</a>)
         }
       }
 
@@ -59,7 +58,7 @@ setTimeout(function(){ this.setState({status: ''}); }, 3000);
         const headers = {
           "Content-Type": "application/json"
         }
-        return fetch(`http://localhost:8080/cart`, {
+        return fetch(`https://git.heroku.com/polar-meadow-31783.git/cart`, {
           method: "POST",
           headers,
           body: JSON.stringify(body)
@@ -113,7 +112,7 @@ setTimeout(function(){ this.setState({status: ''}); }, 3000);
               </div>
             </div>
           </div>
-          
+
 
 
 

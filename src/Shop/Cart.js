@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+
 import { removeItem,addQuantity,subtractQuantity, onClear} from '../actions/cartActions'
 import Recipe from '../Recipe.js'
 
@@ -34,7 +34,7 @@ class Cart extends Component{
                       <tr>
                          <th scope="row" class="border-0">
                            <div class="p-2" >
-                             <img src={`http://localhost:3000/Images/${item.img}`} alt={item.img} width="70" class="img-fluid rounded shadow-sm"/>
+                             <img src={`https://zylenstudio.herokuapp.com/${item.img}`} alt={item.img} width="70" class="img-fluid rounded shadow-sm"/>
                              <div class="ml-3 d-inline-block align-middle">
                                <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">{item.title}</a></h5><span class="text-muted font-weight-normal font-italic d-block">{item.genre}</span>
                              </div>

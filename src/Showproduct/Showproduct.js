@@ -1,12 +1,12 @@
 
 import { connect } from 'react-redux';
 import './Showproduct.css'
-import find from 'lodash/find';
+
 import { addToCart } from '../actions/cartActions'
-import { Link } from 'react-router-dom';
+
 import initState from '../Data/Data.js'
-import React, { useEffect, useState, Component } from 'react'
-import {Card, Button} from 'react-bootstrap';
+import React, { Component } from 'react'
+import { Button} from 'react-bootstrap';
 class Showproduct extends Component {
   constructor(props) {
       super(props);
@@ -45,7 +45,7 @@ class Showproduct extends Component {
             </div>
             <div class="row">
               <div class="col-xs-6">
-              <img  class="img-fluid" class="shadow" alt="Responsive image" src={`http://localhost:3000/Images/${product.img}`} />
+              <img  class="img-fluid" class="shadow" alt="Product pic" src={`https://zylenstudio.herokuapp.com/Images/${product.img}`} />
               </div>
               <div class="col-xs-6">
               <div class="padding">

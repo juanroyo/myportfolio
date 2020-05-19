@@ -1,7 +1,7 @@
 
 import {  ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY, DESTROY_SESSION } from '../actions/action-types/cart-actions.js'
 //import initState from '/Users/juanroyo/Documents/MyPortfolio/my-app/src/Data/Data.js'
-import { combineReducers } from 'redux';
+
 
 const initState = {
     items: [
@@ -20,7 +20,7 @@ function initApp() {
 initApp()
 function GetMoviesFromMongo(){
 
-  fetch("http://localhost:8080/shop")
+  fetch("https://git.heroku.com/polar-meadow-31783.git/shop")
       .then(res => res.json())
       .then(res => {
         initState.items = res;

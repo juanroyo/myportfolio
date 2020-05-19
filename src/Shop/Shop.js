@@ -1,14 +1,9 @@
 import { connect } from 'react-redux';
-import {
-  BrowserRouter as Router,
-  Link,
-  Route // for later
-} from 'react-router-dom';
+
 
 import { addToCart } from '../actions/cartActions'
-import {Form} from 'react-bootstrap';
-import Tooltip from "@material-ui/core/Tooltip";
-import React, { useState, useEffect } from 'react';
+
+import React from 'react';
 import Products from './Products.js'
 
 

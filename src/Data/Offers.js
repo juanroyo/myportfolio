@@ -15,7 +15,7 @@ initApp()
 
 function getOffersFromMongo(){
   console.log("la funcion")
-  fetch("http://localhost:8080/offers")
+  fetch("https://git.heroku.com/polar-meadow-31783.git/offers")
       .then(res => res.json())
       .then(res => {
         console.log(res)

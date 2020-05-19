@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card} from 'react-bootstrap';
+
 import './Footer.css';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -10,7 +10,7 @@ render(){
     <footer class="stylefooter">
 
          <div class="footer-wrapper">
-      
+
          {/*<div class="img-qualities">
          <a href="www.youtube.com" target="_blank"> <img src="./Imagenes/soundcloud-logo3.png" alt=""/></a>
          <a href="www.youtube.com" target="_blank"> <img src="./Imagenes/instagram-logo.png" alt=""/></a>
