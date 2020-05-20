@@ -16,7 +16,7 @@ const Offers = {
 }
 
 function initApp() {
-  console.log("initApp");
+
   //this.GetMovies();
 
   getOffersFromMongo();
@@ -27,7 +27,7 @@ initApp()
 
 
 function getOffersFromMongo(){
-  console.log("la funcion")
+
   fetch("https://ancient-oasis-38770.herokuapp.com/offers")
       .then(res => res.json())
       .then(res => {

@@ -52,7 +52,7 @@ auth.onAuthStateChanged((user) => {
     sessionTimeout && clearTimeout(sessionTimeout);
     sessionTimeout = null;
   } else {
-    console.log("estoy loggeado")
+    
     // User is logged in.
     // Fetch the decoded ID token and create a session timeout which signs the user out.
     user.getIdTokenResult().then((idTokenResult) => {
