@@ -20,8 +20,13 @@ function initApp() {
 initApp()
 function GetMoviesFromMongo(){
 
-  fetch("https://ancient-oasis-38770.herokuapp.com/shop")
-      .then(res => res.json())
+  fetch("https://ancient-oasis-38770.herokuapp.com/shop", {
+  method: 'GET', // or 'PUT'
+  
+  headers:{
+    'Content-Type': 'application/json'
+  }
+  }).then(res => res.json())
       .then(res => {
         initState.items = res;
       });
