@@ -21,7 +21,7 @@ initApp()
 function GetMoviesFromMongo( ){
 
 
-  fetch("http://localhost:8080/login", { method: 'GET' })
+  fetch("https://ancient-oasis-38770.herokuapp.com/login", { method: 'GET' })
   .then(res => res.json())
       .then(res => {
         purchases = res;
