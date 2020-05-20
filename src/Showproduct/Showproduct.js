@@ -53,7 +53,7 @@ class Showproduct extends Component {
               <p>{product.desc}</p><br/><p>{product.author}</p>
               {product.audio.map(item=>{
                   return(<div class="audio"><audio controls>
-                    <source src={`http://localhost:3000/Audio/${item.song}`} type="audio/ogg"/>
+                    <source src={`https://zylenstudio.herokuapp.com/Audio/${item.song}`} type="audio/ogg"/>
 
                   </audio></div>)})}
               <br/>

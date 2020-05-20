@@ -58,7 +58,7 @@ setTimeout(function(){ this.setState({status: ''}); }, 3000);
         const headers = {
           "Content-Type": "application/json"
         }
-        return fetch(`https://git.heroku.com/polar-meadow-31783.git/cart`, {
+        return fetch(`https://ancient-oasis-38770.herokuapp.com/cart`, {
           method: "POST",
           headers,
           body: JSON.stringify(body)
@@ -108,6 +108,7 @@ setTimeout(function(){ this.setState({status: ''}); }, 3000);
                   </li>
                 </ul>
                 <button className="waves-effect waves-light btn"> {notLogged()}</button>
+                {this.handleAlert()}
                   <div>{this.state.message}</div>
               </div>
             </div>

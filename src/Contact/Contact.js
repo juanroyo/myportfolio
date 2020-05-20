@@ -21,7 +21,7 @@ export default class Contact extends Component {
     		e.preventDefault()
     		console.log(this.state)
     		axios
-    			.post('http://localhost:8080/contact', this.state)
+    			.post('https://ancient-oasis-38770.herokuapp.com/contact', this.state)
     			.then(response => {
     				console.log(response.status)
             if (response.status = 200) {
@@ -44,7 +44,7 @@ render(){
                   <div class='col'>
                       <div class="boxstyle">
                             <Form onSubmit={this.submitHandler}>
-                              <h1>Contact</h1>
+                              <h1 class="titlebox">Contact</h1>
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label for="email">Email address</Form.Label>
                                     <Form.Control type="email" placeholder="Enter email"

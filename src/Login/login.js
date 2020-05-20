@@ -97,7 +97,7 @@ error(){
             <div class='col'>
                 <div class="boxstylelogin">
                           <Form>
-                          <h1>Login/Register</h1>
+                          <h1 class="titlebox">Login/Register</h1>
                          <Form.Group controlId="formBasicEmail">
                           <Form.Label>Email address</Form.Label>
                           <Form.Control value={this.state.email} onChange={this.handleChange} type="email" name="email" placeholder="Enter email" />
