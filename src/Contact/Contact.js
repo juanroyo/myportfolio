@@ -21,7 +21,7 @@ export default class Contact extends Component {
     		e.preventDefault()
     		console.log(this.state)
     		axios
-    			.post('https://ancient-oasis-38770.herokuapp.com/contact', this.state)
+    			.post('https://myportfolionode.herokuapp.com/contact', this.state)
     			.then(response => {
     				console.log(response.status)
             if (response.status = 200) {

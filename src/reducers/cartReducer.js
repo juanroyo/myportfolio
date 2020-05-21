@@ -20,10 +20,10 @@ function initApp() {
 initApp()
 function GetMoviesFromMongo(){
 
-  fetch("https://ancient-oasis-38770.herokuapp.com/shop", {
+  fetch("https://myportfolionode.herokuapp.com//shop", {
   method: 'GET', // or 'PUT'
 
-  
+
   }).then(res => res.json())
       .then(res => {
         initState.items = res;

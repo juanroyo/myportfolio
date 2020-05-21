@@ -46,7 +46,7 @@ setTimeout(function(){ this.setState({status: ''}); }, 3000);
              Compra {this.props.total} €
            </StripeCheckout>)
         } else {
-          return(<a href="https://zylenstudio.herokuapp.com/login">you need to be logged in first</a>)
+          return(<a href="https://myportfolionode.herokuapp.com/login">you need to be logged in first</a>)
         }
       }
 
