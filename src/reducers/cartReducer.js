@@ -20,7 +20,7 @@ function initApp() {
 initApp()
 function GetMoviesFromMongo(){
 
-  fetch("https://myportfolionode.herokuapp.com//shop", {
+  fetch("https://myportfolionode.herokuapp.com/shop", {
   method: 'GET', // or 'PUT'
 
 
