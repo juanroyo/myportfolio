@@ -45,7 +45,7 @@ class Showproduct extends Component {
             </div>
             <div class="row">
               <div class="col-xs-6">
-              <img  class="img-fluid" class="shadow" alt="Product pic" src={`https://zylenstudio.herokuapp.com/Images/${product.img}`} />
+              <img  class="img-fluid" class="shadow" alt="Product pic" src={`https://zylen.herokuapp.com/Images/${product.img}`} />
               </div>
               <div class="col-xs-6">
               <div class="padding">
@@ -53,7 +53,7 @@ class Showproduct extends Component {
               <p>{product.desc}</p><br/><p>{product.author}</p>
               {product.audio.map(item=>{
                   return(<div class="audio"><audio controls>
-                    <source src={`https://zylenstudio.herokuapp.com/Audio/${item.song}`} type="audio/ogg"/>
+                    <source src={`https://zylen.herokuapp.com/Audio/${item.song}`} type="audio/ogg"/>
 
                   </audio></div>)})}
               <br/>

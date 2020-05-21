@@ -46,7 +46,7 @@ setTimeout(function(){ this.setState({status: ''}); }, 3000);
              Compra {this.props.total} €
            </StripeCheckout>)
         } else {
-          return(<a href="https://myportfolionode.herokuapp.com/login">you need to be logged in first</a>)
+          return(<a href="https://zylen.herokuapp.com/login">you need to be logged in first</a>)
         }
       }
 
@@ -58,7 +58,7 @@ setTimeout(function(){ this.setState({status: ''}); }, 3000);
         const headers = {
           "Content-Type": "application/json"
         }
-        return fetch(`https://ancient-oasis-38770.herokuapp.com/cart`, {
+        return fetch(`https://myportfolionode.herokuapp.com/cart`, {
           method: "POST",
           headers,
           body: JSON.stringify(body)

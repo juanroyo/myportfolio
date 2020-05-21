@@ -72,7 +72,7 @@ const handleClick = (_id) => {
                   return(<Carousel.Item>
                                   <img width={900} height={500}
                                     className="d-block w-100"
-                                    src={`https://zylenstudio.herokuapp.com/Images/${item.img}`}
+                                    src={`https://zylen.herokuapp.com/Images/${item.img}`}
                                     alt="First slide"
                                   />
                                   <Carousel.Caption>
@@ -108,7 +108,7 @@ const handleClick = (_id) => {
 
                                       <div class="card bg-light h-100" >
                                       <div class="prodcard">
-                                       <Link to={`/Showproduct/${item._id}`}><img class="img-fluid" alt="product pic" src={`https://zylenstudio.herokuapp.com/Images/${item.img}`} /></Link>
+                                       <Link to={`/Showproduct/${item._id}`}><img class="img-fluid" alt="product pic" src={`https://zylen.herokuapp.com/Images/${item.img}`} /></Link>
                                         <div class="card-body">
                                           <h4 class="card-title">
                                             {item.title}
