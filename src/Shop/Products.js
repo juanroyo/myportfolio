@@ -15,27 +15,16 @@ const Offers = {
   info:[],
 }
 
-function initApp() {
+async function getOffersFromMongo(){
 
-  //this.GetMovies();
-
-  getOffersFromMongo();
+  const respuesta = await fetch("https://myportfolionode.herokuapp.com/offers", {
+method: 'GET',
+})
+const json = await respuesta.json()
+return Offers.info = json
+  console.log(Offers.info)
 }
-
-initApp()
-
-
-
-function getOffersFromMongo(){
-
-  fetch("https://myportfolionode.herokuapp.com/offers")
-      .then(res => res.json())
-      .then(res => {
-
-        Offers.info = res;
-      });
-}
-
+getOffersFromMongo();
 function Products (  props, {match} )  {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);

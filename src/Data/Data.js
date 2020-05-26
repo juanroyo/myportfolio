@@ -11,9 +11,10 @@ function initApp() {
 }
 
 initApp()
-function getMoviesFromMongo(){
 
-  fetch("https://myportfolionode.herokuapp.com/data")
+async function getMoviesFromMongo(){
+
+  return await fetch("https://myportfolionode.herokuapp.com/data")
       .then(res => res.json())
       .then(res => {
         Products.items = res;

@@ -11,25 +11,20 @@ const initState = {
     total: 0
 
 };
-function initApp() {
 
-  //this.GetMovies();
-  GetMoviesFromMongo();
+
+
+
+
+async function GetMoviesFromMongo(){
+  const respuesta = await fetch("https://myportfolionode.herokuapp.com/shop", {
+method: 'GET',
+})
+const json = await respuesta.json()
+return initState.items = json
+  console.log(initState.items)
 }
-
-initApp()
-function GetMoviesFromMongo(){
-
-  fetch("https://myportfolionode.herokuapp.com/shop", {
-  method: 'GET', // or 'PUT'
-
-
-  }).then(res => res.json())
-      .then(res => {
-        initState.items = res;
-      });
-}
-
+GetMoviesFromMongo();
 const cartReducer= (state = initState,action)=>{
   //INSIDE HOME COMPONENT
 
