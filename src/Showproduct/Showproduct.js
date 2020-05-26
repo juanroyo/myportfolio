@@ -76,7 +76,7 @@ const spinnerLoading=()=>{
 
     return (
         <div class="super">
-{spinnerLoading()}
+        {spinnerLoading()}
 
         </div>
 
