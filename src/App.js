@@ -43,8 +43,9 @@ class App extends Component {
  }
  timeOutLog() {
    const auth = fire.auth();
-   const user = this.state.user;
+const user = this.state.user;
 auth.onAuthStateChanged((user) => {
+   console.log(user)
   let sessionTimeout = null;
   if (user == null) {
     // User is logged out.
@@ -58,7 +59,7 @@ auth.onAuthStateChanged((user) => {
     user.getIdTokenResult().then((idTokenResult) => {
       // Make sure all the times are in milliseconds!
       const authTime = idTokenResult.claims.auth_time * 10000;
-      const sessionDuration =  10000 * 600 * 600 * 24 * 30;
+      const sessionDuration =  1000 * 600 * 60 * 24 * 30;
       const millisecondsUntilExpiration = sessionDuration - (Date.now() - authTime);
       sessionTimeout = setTimeout(() => auth.signOut(), millisecondsUntilExpiration);
     });

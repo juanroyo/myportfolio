@@ -49,12 +49,9 @@ const handleClick = (_id) => {
           const handleSelect = (selectedIndex, e) => {
             setIndex(selectedIndex);
           };
-          const productLoading=()=>{
-            if(results = undefined) {
-              return(<div class="spinner-border" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>)
-          } else {
+        
+        return(
+            <div class="container-lg" >
             <div>
             <div class='row'>
             <h1>Shop</h1>
@@ -122,12 +119,6 @@ const handleClick = (_id) => {
                   })}
                 </div>
                 </div>
-          }
-          }
-        return(
-            <div class="container-lg" >
-
-            {productLoading()}
                  <Route
                   path="/Showproduct/:id"
                   render={(props) => <Showproduct {...props} />}
