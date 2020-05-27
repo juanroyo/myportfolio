@@ -27,24 +27,24 @@ log() {
 
 
     return(
-      <div class="shadoww">
+      <div className="shadoww">
 
 
 
 
-              <Navbar collapseOnSelect expand="lg" bg="light" variant="light" class="shadow p-3 mb-5 bg-white rounded">
+              <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className="shadow p-3 mb-5 bg-white rounded">
                   <Navbar.Brand href="">Zylen Studio</Navbar.Brand>
                   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                   <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                      <Nav.Link><Link to="/"><span >Home</span></Link></Nav.Link>
-                          <Nav.Link><Link to="/shop"><span >Shop</span></Link></Nav.Link>
-                          <Nav.Link> <Link to="/login"><span class="black-text text-darken-2">Log in</span></Link></Nav.Link>
-                          <Nav.Link> <Link to="/contact"><span class="black-text text-darken-2">Contact</span></Link></Nav.Link>
+                      <Link to="/"><span class="link" >Home</span></Link>
+                        <Link to="/shop"><span class="link">Shop</span></Link>
+                          <Link to="/login"><span class="link">Log in</span></Link>
+                          <Link to="/contact"><span class="link">Contact</span></Link>
                           {this.log()}
                     </Nav>
                     <Nav>
-                <Nav.Link>  <a class="nav-link"><Link to="/cart"><i className="material-icons">shopping_cart</i></Link></a></Nav.Link>
+              <Link to="/cart"><i className="material-icons">shopping_cart</i></Link>
                     </Nav>
                   </Navbar.Collapse>
                 </Navbar>
