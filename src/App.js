@@ -25,7 +25,6 @@ class App extends Component {
   }
   componentDidMount() {
    this.authListener();
-   this.timeOutLog();
 
  }
 
@@ -41,31 +40,7 @@ class App extends Component {
      }
    });
  }
- timeOutLog() {
-   const auth = fire.auth();
-const user = this.state.user;
-auth.onAuthStateChanged((user) => {
-   console.log(user)
-  let sessionTimeout = null;
-  if (user == null) {
-    // User is logged out.
-    // Clear the session timeout.
-    sessionTimeout && clearTimeout(sessionTimeout);
-    sessionTimeout = null;
-  } else {
 
-    // User is logged in.
-    // Fetch the decoded ID token and create a session timeout which signs the user out.
-    user.getIdTokenResult().then((idTokenResult) => {
-      // Make sure all the times are in milliseconds!
-      const authTime = idTokenResult.claims.auth_time * 10000;
-      const sessionDuration =  1000 * 600 * 60 * 24 * 30;
-      const millisecondsUntilExpiration = sessionDuration - (Date.now() - authTime);
-      sessionTimeout = setTimeout(() => auth.signOut(), millisecondsUntilExpiration);
-    });
-  }
-})
- }
 
  render(){
 

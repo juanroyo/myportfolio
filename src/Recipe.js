@@ -19,12 +19,12 @@ handleAlert=()=>{
 switch (this.state.status) {
   case 200:
   return(<div class="alert alert-success" role="alert">
-This is a success alert—check it out!
+Payment done succesfully!
 </div>)
 break;
   case 500:
     return(<div class="alert alert-danger" role="alert">
-  This is a danger alert—check it out!
+Your payment didn't get through
   </div>)
     break;
   default:
@@ -40,13 +40,13 @@ setTimeout(function(){ this.setState({status: ''}); }, 3000);
         return(<StripeCheckout
             stripeKey= "pk_test_4B9W2axLr9LK45DRsR9W2Fhv00zdGlIUBT"
             token={makePayment}
-            name="buy mis cosas"
+            name="Enter your Email"
             amount={this.props.total * 100}
              >
              Compra {this.props.total} €
            </StripeCheckout>)
         } else {
-          return(<a href="https://zylen.herokuapp.com/login">you need to be logged in first</a>)
+          return(<a href="https://zylen.herokuapp.com/login">You need to be logged in first to make a payment</a>)
         }
       }
 

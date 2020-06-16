@@ -73,6 +73,7 @@ handleChange(e) {
     fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
     }).then((u)=>{console.log(u)})
     .catch((error) => {
+      this.setState({messageerror: error, messagesuccess: ""})
           console.log(error);
       })
   }
@@ -86,7 +87,28 @@ error(){
 
   render() {
 
-
+    const Greetings = () => {
+      if(this.props.user == null) {
+        return(<Form>
+        <h1 class="titlebox">Login Register</h1>
+       <Form.Group controlId="formBasicEmail">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control value={this.state.email} onChange={this.handleChange} type="email" name="email" placeholder="Enter email" />
+        <Form.Text className="text-muted">
+       We'll never share your email with anyone else.
+     </Form.Text>
+       </Form.Group>
+        <Form.Group controlId="formBasicEmail">
+        <Form.Label>Password</Form.Label>
+        <Form.Control value={this.state.password} onChange={this.handleChange} type="password" name="password" placeholder="Password" />
+       </Form.Group>
+        <Button variant="primary" type="submit" onClick={this.login} >Login</Button>
+       <Button variant="primary" type="submit" onClick={this.signup} style={{marginLeft: '25px'}} >Signup</Button>
+       </Form>)
+     } else {
+       return (<h1>Welcome {this.props.user.email}</h1>)
+     }
+    }
 
   return(
 
@@ -96,22 +118,8 @@ error(){
         <div class="row">
             <div class='col'>
                 <div class="boxstylelogin">
-                          <Form>
-                          <h1 class="titlebox">Login/Register</h1>
-                         <Form.Group controlId="formBasicEmail">
-                          <Form.Label>Email address</Form.Label>
-                          <Form.Control value={this.state.email} onChange={this.handleChange} type="email" name="email" placeholder="Enter email" />
-                          <Form.Text className="text-muted">
-                         We'll never share your email with anyone else.
-                       </Form.Text>
-                         </Form.Group>
-                          <Form.Group controlId="formBasicEmail">
-                          <Form.Label>Password</Form.Label>
-                          <Form.Control value={this.state.password} onChange={this.handleChange} type="password" name="password" placeholder="Password" />
-                         </Form.Group>
-                          <Button variant="primary" type="submit" onClick={this.login} >Login</Button>
-                         <Button variant="primary" type="submit" onClick={this.signup} style={{marginLeft: '25px'}} >Signup</Button>
-                         </Form>
+                {Greetings()}
+
                       <div>{this.error()}</div>
                   <div>{this.state.messagesuccess}</div>
               </div>

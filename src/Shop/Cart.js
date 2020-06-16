@@ -34,7 +34,7 @@ class Cart extends Component{
                       <tr>
                          <th scope="row" class="border-0">
                            <div class="p-2" >
-                             <img src={`https://zylenstudio.herokuapp.com/Images/${item.img}`} alt={item.img} width="70" class="img-fluid rounded shadow-sm"/>
+                             <img src={`https://zylen.herokuapp.com/Images/${item.img}`} alt={item.img} width="70" class="img-fluid rounded shadow-sm"/>
                              <div class="ml-3 d-inline-block align-middle">
                                <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">{item.title}</a></h5><span class="text-muted font-weight-normal font-italic d-block">{item.genre}</span>
                              </div>
@@ -55,6 +55,8 @@ class Cart extends Component{
          <div class="pb-5">
           <div class="container">
             <div class="row">
+            <div class="col">
+
               <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
 
                <div class="table-responsive">
@@ -81,6 +83,7 @@ class Cart extends Component{
       </tbody>
 
                   </table>
+            </div>
             </div>
             </div>
             </div>

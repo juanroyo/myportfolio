@@ -14,7 +14,6 @@
     "ionicons": "^5.0.1",
     "ionicons-npm": "^2.0.1",
     "jquery": "^3.4.1",
-    "lightgallery": "^1.6.12",
     "materialize-css": "^1.0.0-rc.2",
     "mdbootstrap": "^4.14.1",
     "react": "^16.13.0",
@@ -35,7 +34,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-
   "eslintConfig": {
     "extends": "react-app"
   },

@@ -12,7 +12,7 @@ import './Nav.css'
         }
         this.logout = this.logout.bind(this);
         this.log = this.log.bind(this);
-
+        this.profile = this.profile.bind(this);
     }
     logout() {
         fire.auth().signOut();
@@ -22,7 +22,13 @@ log() {
     return(<a class="nav-link"><button onClick={this.logout}>Logout</button></a>)
   }
 }
-
+profile(){
+  if (this.props.user == null) {
+    return(  <Link to="/login"><span class="link">Log in</span></Link>)
+  } else {
+    return(  <Link to="/login"><span class="link">Profile</span></Link>)
+  }
+}
    render(props){
 
 
@@ -39,7 +45,7 @@ log() {
                     <Nav className="mr-auto">
                       <Link to="/"><span class="link" >Home</span></Link>
                         <Link to="/shop"><span class="link">Shop</span></Link>
-                          <Link to="/login"><span class="link">Log in</span></Link>
+                          {this.profile()}
                           <Link to="/contact"><span class="link">Contact</span></Link>
                           {this.log()}
                     </Nav>
