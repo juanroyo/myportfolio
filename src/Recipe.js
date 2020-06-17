@@ -15,7 +15,7 @@ this.state = {
 }
 
 handleAlert=()=>{
-  console.log(this.state.status)
+  
 switch (this.state.status) {
   case 200:
   return(<div class="alert alert-success" role="alert">

@@ -19,18 +19,18 @@ export default class Contact extends Component {
 
     	submitHandler = e => {
     		e.preventDefault()
-    		console.log(this.state)
+
     		axios
     			.post('https://myportfolionode.herokuapp.com/contact', this.state)
     			.then(response => {
-    				console.log(response.status)
+
             if (response.status = 200) {
               this.setState({successfullMessage: "succesfully sent message!", email: '', textarea: '', errorMessage: ''})
             }
 
     			})
     			.catch(error => {
-    				console.log(error)
+    			
             this.setState({errorMessage: "sorry, your message could't be sent", successfullMessage:"", email: '', textarea: ''})
     			})
     	}

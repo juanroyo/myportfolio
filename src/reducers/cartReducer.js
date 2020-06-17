@@ -30,7 +30,7 @@ const cartReducer= (state = initState,action)=>{
 
       if(action.type === ADD_TO_CART){
             let addedItem = state.items.find(item=> item._id === action._id)
-            console.log(addedItem = state.items.find(item=> item._id === action._id))
+            
 //limite uno debe ser aqui
             //check if the action id exists in the addedItems
            let existed_item= state.addedItems.find(item=> action._id === item._id)

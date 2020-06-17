@@ -43,10 +43,10 @@ profile(){
                   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                   <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                      <Link to="/"><span class="link" >Home</span></Link>
-                        <Link to="/shop"><span class="link">Shop</span></Link>
+                      <Link to="/"><span className="link" >Home</span></Link>
+                        <Link to="/shop"><span className="link">Shop</span></Link>
                           {this.profile()}
-                          <Link to="/contact"><span class="link">Contact</span></Link>
+                          <Link to="/contact"><span className="link">Contact</span></Link>
                           {this.log()}
                     </Nav>
                     <Nav>

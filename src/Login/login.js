@@ -63,7 +63,7 @@ handleChange(e) {
     .catch((error) => {
 
         this.setState({messageerror: error, messagesuccess: ""})
-        console.log(error);
+
       });
 
   }
@@ -74,7 +74,7 @@ handleChange(e) {
     }).then((u)=>{console.log(u)})
     .catch((error) => {
       this.setState({messageerror: error, messagesuccess: ""})
-          console.log(error);
+        
       })
   }
 error(){
